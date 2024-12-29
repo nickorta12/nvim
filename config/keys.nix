@@ -1,5 +1,5 @@
 {keymap, ...}: let
-  inherit (keymap) nmap imap tmap nlua;
+  inherit (keymap) nmap imap nlua mkKeyLua;
 in {
   keymaps = [
     (nmap "<leader>bn" ":bn<cr>" "Next Buffer")
@@ -58,6 +58,14 @@ in {
     (imap "<C-g>;" "<esc>mmA;<esc>`ma" "Add semicolon")
     (nmap "<leader>," "mmA,<esc>`m" "Add comma")
     (nmap "<C-g>," "<esc>mmA,<esc>`ma" "Add comma")
+
+    # Flash keybindings
+    # https://github.com/folke/flash.nvim?tab=readme-ov-file#-installation
+    (mkKeyLua ["n" "x" "o"] "s" "require('flash').jump()" "Flash")
+    (mkKeyLua ["n" "x" "o"] "S" "require('flash').treesitter()" "Flash Treesitter")
+    (mkKeyLua ["o"] "r" "require('flash').remote()" "Remote Flash")
+    (mkKeyLua ["o" "x"] "R" "require('flash').treesitter_search()" "Treesitter Search")
+    (mkKeyLua ["c"] "<c-s>" "require('flash').toggle()" "Toggle Flash Search")
 
     # (tmap "<esc><esc>" "<C-\\><C-n>" "Exit Terminal")
   ];

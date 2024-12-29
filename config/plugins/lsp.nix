@@ -49,13 +49,6 @@ in {
             "trim_newlines"
           ];
         };
-        /*
-           formatters = {
-          alejandra.command = lib.getExe pkgs.alejandra;
-          ruff_format.command = lib.getExe pkgs.ruff;
-          ruff_fix.command = lib.getExe pkgs.ruff;
-        };
-        */
         format_on_save = {
           lsp_format = "fallback";
           timeout_ms = 500;
@@ -81,11 +74,14 @@ in {
       settings = {
         keymap = {
           preset = "super-tab";
+          "<C-y>" = ["select_and_accept"];
           "<CR>" = ["accept" "fallback"];
+          cmdline = {
+            preset = "default";
+          };
         };
-        highlight.use_nvim_cmp_as_default = true;
-        accept.auto_brackets.enable = true;
-        trigger.signature_help.enable = true;
+        #   appearance.use_nvim_cmp_as_default = true;
+        signature.enabled = true;
       };
     };
 

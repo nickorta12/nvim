@@ -65,7 +65,12 @@
     };
 
     # Better vim motions
-    flash.enable = true;
+    flash = {
+      enable = true;
+      settings = {
+        modes.char.enabled = false;
+      };
+    };
 
     # Better undo handling
     undotree = {
