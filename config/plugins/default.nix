@@ -82,6 +82,12 @@
       };
     };
 
+    # Transparent background
+    transparent = {
+      enable = true;
+      autoLoad = true;
+    };
+
     # # Fancy ui
     # noice = {
     #   enable = true;

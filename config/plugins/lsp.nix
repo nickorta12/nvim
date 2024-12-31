@@ -77,7 +77,7 @@ in {
           "<C-y>" = ["select_and_accept"];
           "<CR>" = ["accept" "fallback"];
           cmdline = {
-            preset = "default";
+            preset = "super-tab";
           };
         };
         #   appearance.use_nvim_cmp_as_default = true;
