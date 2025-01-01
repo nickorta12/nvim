@@ -31,16 +31,21 @@ in {
     (nmap "<leader>gs" ":Git status<CR>" "Git Status")
     (nmap "<leader>gd" ":Gitsigns diffthis<CR>" "Git Diff")
 
-    (nmap "<leader>wk" "<C-w>k" "Window Up")
-    (nmap "<leader>wj" "<C-w>j" "Window Down")
-    (nmap "<leader>wh" "<C-w>h" "Window Left")
-    (nmap "<leader>wl" "<C-w>l" "Window Right")
-    (nmap "<leader>wp" "<C-w>p" "Window Previous")
-    (nmap "<leader>ww" "<C-w>w" "Window Down/Right")
-    (nmap "<leader>wW" "<C-w>W" "Window Up/Left")
-    (nmap "<leader>wt" "<C-w>t" "Window Top-Left")
-    (nmap "<leader>wb" "<C-w>b" "Window Bottom-Right")
-    (nmap "<leader>wq" "<C-w>q" "Window Delete")
+    (nmap "<c-w>s" ":split<cr><c-w>j" "Split window")
+    (nmap "<c-w>v" ":vsplit<cr><c-w>l" "Split window vertically")
+    (nmap "<leader>ws" ":split<cr><c-w>j" "Split window")
+    (nmap "<leader>wv" ":vsplit<cr><c-w>l" "Split window vertically")
+
+    (nmap "<leader>wk" "<c-w>k" "Window Up")
+    (nmap "<leader>wj" "<c-w>j" "Window Down")
+    (nmap "<leader>wh" "<c-w>h" "Window Left")
+    (nmap "<leader>wl" "<c-w>l" "Window Right")
+    (nmap "<leader>wp" "<c-w>p" "Window Previous")
+    (nmap "<leader>ww" "<c-w>w" "Window Down/Right")
+    (nmap "<leader>wW" "<c-w>W" "Window Up/Left")
+    (nmap "<leader>wt" "<c-w>t" "Window Top-Left")
+    (nmap "<leader>wb" "<c-w>b" "Window Bottom-Right")
+    (nmap "<leader>wq" "<c-w>q" "Window Delete")
 
     (nmap "<leader>xx" ":Trouble diagnostics toggle<cr>" "Diagnostics")
     (nmap "<leader>xX" ":Trouble diagnostics toggle filter.buf=0<cr>" "Buffer Diagnostics")
@@ -51,11 +56,11 @@ in {
 
     (nlua "<leader>f" "require('conform').format()" "Format buffer")
 
-    (nmap "<leader>rw" "yiw:s/<C-r>\"/" "Replace word in line")
-    (nmap "<leader>rW" "yiw:%s/<C-r>\"/" "Replace word in file")
+    (nmap "<leader>rw" "yiw:s/<c-r>\"/" "Replace word in line")
+    (nmap "<leader>rW" "yiw:%s/<c-r>\"/" "Replace word in file")
 
     (nmap "<leader>;" "mmA;<esc>`m" "Add semicolon")
-    (imap "<C-g>;" "<esc>mmA;<esc>`ma" "Add semicolon")
+    (imap "<c-g>;" "<esc>mmA;<esc>`ma" "Add semicolon")
     (nmap "<leader>," "mmA,<esc>`m" "Add comma")
     (nmap "<C-g>," "<esc>mmA,<esc>`ma" "Add comma")
 
