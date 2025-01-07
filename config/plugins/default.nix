@@ -4,6 +4,7 @@
     ./git.nix
     ./lsp.nix
     ./treesitter.nix
+    ./extra.nix
   ];
 
   plugins = {
