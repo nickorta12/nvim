@@ -1,10 +1,11 @@
 {
   imports = [
-    ./telescope.nix
+    ./conform.nix
+    ./extra.nix
     ./git.nix
     ./lsp.nix
+    ./telescope.nix
     ./treesitter.nix
-    ./extra.nix
   ];
 
   plugins = {
