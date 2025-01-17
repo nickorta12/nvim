@@ -52,6 +52,30 @@
           };
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;
+        bnvim = nixvim'.makeNixvimWithModule {
+          inherit pkgs;
+          module = {lib, ...}: {
+            imports = [
+              ./config/config.nix
+            ];
+            colorschemes = lib.mkDefault {
+              tokyonight = {
+                enable = true;
+                settings.style = "night";
+              };
+            };
+            performance.byteCompileLua = {
+              enable = true;
+              nvimRuntime = true;
+              configs = true;
+              plugins = false;
+            };
+            plugins.transparent = {
+              enable = true;
+              autoLoad = true;
+            };
+          };
+        };
       in {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
@@ -61,6 +85,7 @@
         packages = {
           # Lets you run `nix run .` to start nixvim
           default = nvim;
+          inherit bnvim;
         };
       };
     };
