@@ -52,14 +52,14 @@
       };
     };
     # Sidebar
-    neo-tree = {
-      enable = true;
-      closeIfLastWindow = false;
-      filesystem = {
-        useLibuvFileWatcher = true;
-        followCurrentFile.enabled = true;
-      };
-    };
+    # neo-tree = {
+    #   enable = true;
+    #   closeIfLastWindow = false;
+    #   filesystem = {
+    #     useLibuvFileWatcher = true;
+    #     followCurrentFile.enabled = true;
+    #   };
+    # };
     # Better surrounding of characters
     nvim-surround = {
       enable = true;
