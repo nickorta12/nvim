@@ -8,6 +8,18 @@
     ./treesitter.nix
   ];
 
+  # extraConfigLuaPre = ''
+  #   if vim.env.PROF then
+  #       require("snacks.profiler").startup({
+  #         startup = {
+  #           event = "VimEnter", -- stop profiler on this event. Defaults to `VimEnter`
+  #           -- event = "UIEnter",
+  #           -- event = "VeryLazy",
+  #         },
+  #       })
+  #     end
+  # '';
+
   plugins = {
     # Reopens files at last edit position
     lastplace.enable = true;
@@ -51,19 +63,19 @@
     # Better surrounding of characters
     nvim-surround = {
       enable = true;
-      # settings.keymaps = {
-      #   insert = "<C-g>z";
-      #   insert_line = "<C-g>Z";
-      #   normal = "gz";
-      #   normal_cur = "gZ";
-      #   normal_line = "gzz";
-      #   normal_cur_line = "gZZ";
-      #   visual = "gz";
-      #   visual_line = "gZ";
-      #   delete = "gzd";
-      #   change = "gzr";
-      #   change_line = "gzR";
-      # };
+      settings.keymaps = {
+        insert = "<C-g>z";
+        insert_line = "<C-g>Z";
+        normal = "yz";
+        normal_cur = "yzz";
+        normal_line = "yZ";
+        normal_cur_line = "yZZ";
+        visual = "Z";
+        visual_line = "gZ";
+        delete = "dz";
+        change = "cz";
+        change_line = "cZ";
+      };
     };
 
     # Better vim motions
@@ -95,7 +107,7 @@
       settings = {
         input.enabled = true;
         lazygit.enabled = true;
-        profiler.enabled = true;
+        # profiler.enabled = true;
         terminal.enabled = true;
       };
     };
