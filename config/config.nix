@@ -3,6 +3,7 @@
     mapleader = " ";
   };
   opts = {
+    undofile = true;
     number = true;
     relativenumber = true;
 

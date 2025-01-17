@@ -10,6 +10,7 @@
         c
         cpp
         json
+        jsonc
         just
         lua
         markdown

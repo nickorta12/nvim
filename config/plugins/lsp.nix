@@ -1,5 +1,27 @@
-{keymap, ...}: let
+{
+  keymap,
+  pkgs,
+  ...
+}: let
   nmap = keymap.mkKeyLua "n";
+  basedpyright = pkgs.basedpyright.overrideAttrs rec {
+    pname = "basedpyright";
+    version = "1.24.0";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "detachhead";
+      repo = "basedpyright";
+      tag = "v${version}";
+      hash = "sha256-46Icd8zrblD3fSeY1izEOMrYwTv+a4YE1cmMYUJtewk=";
+    };
+
+    npmDepsHash = "sha256-XfdJVy4+GQ9gt0bo0/1DZvCKU1t4UgThNEBqC/rId9k=";
+    npmDeps = pkgs.fetchNpmDeps {
+      inherit src;
+      name = "${pname}-${version}-npm-deps";
+      hash = npmDepsHash;
+    };
+  };
 in {
   plugins = {
     lsp = {
@@ -10,7 +32,15 @@ in {
           settings.formatting.command = ["alejandra"];
           onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
         };
-        pyright.enable = true;
+        basedpyright = {
+          enable = true;
+          package = basedpyright;
+          settings.basedpyright = {
+            inlayHints.callArgumentNames = true;
+          };
+        };
+        jsonls.enable = true;
+        lua_ls.enable = true;
       };
       capabilities = "capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)";
       keymaps.extra = [
@@ -66,5 +96,9 @@ in {
 
     trouble.enable = true;
     nvim-lightbulb.enable = true;
+
+    neoconf = {
+      enable = true;
+    };
   };
 }
