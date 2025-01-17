@@ -90,9 +90,14 @@
       autoLoad = true;
     };
 
-    # # Fancy ui
-    # noice = {
-    #   enable = true;
-    # };
+    snacks = {
+      enable = true;
+      settings = {
+        input.enabled = true;
+        lazygit.enabled = true;
+        profiler.enabled = true;
+        terminal.enabled = true;
+      };
+    };
   };
 }

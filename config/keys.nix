@@ -18,6 +18,8 @@ in {
     (nmap "<leader>td" ":tabclose<cr>" "Close Tab")
     (nmap "<leader>tc" ":tabnew<cr>" "New Tab")
 
+    (nlua "<leader>T" "Snacks.terminal()" "Open terminal")
+
     (nmap "<C-d>" "<C-d>zz" "Scroll Down")
     (nmap "<C-u>" "<C-u>zz" "Scroll Up")
 
@@ -26,7 +28,9 @@ in {
     (nmap "<leader>u" ":UndotreeToggle<cr>" "Toggle UndoTree")
     (nmap "<leader>y" ":Yazi<cr>" "Open File Browser (Yazi)")
 
-    (nmap "<leader>gg" ":LazyGit<CR>" "Open LazyGit")
+    (nlua "<leader>gg" "Snacks.lazygit()" "Open LazyGit")
+    (nlua "<leader>gl" "Snacks.lazygit.log()" "LazyGit Log")
+    (nlua "<leader>gL" "Snacks.lazygit.log_file()" "LazyGit Log File")
     (nmap "<leader>gb" ":Git blame<CR>" "Git Blame")
     (nmap "<leader>gs" ":Git status<CR>" "Git Status")
     (nmap "<leader>gd" ":Gitsigns diffthis<CR>" "Git Diff")
