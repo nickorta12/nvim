@@ -1,11 +1,13 @@
-{keymap, ...}: {
+{ keymap, ... }:
+{
   plugins = {
     telescope = {
       enable = true;
-      keymaps = let
-        inherit (keymap) keysToAttrs;
-        mk = keymap.mkKeyBasic;
-      in
+      keymaps =
+        let
+          inherit (keymap) keysToAttrs;
+          mk = keymap.mkKeyBasic;
+        in
         keysToAttrs [
           (mk "<leader>sf" "find_files" "Search Files")
           (mk "<leader>sa" "find_files hidden=true no_ignore=true follow=true" "Search All")

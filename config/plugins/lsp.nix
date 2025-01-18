@@ -2,7 +2,8 @@
   keymap,
   pkgs,
   ...
-}: let
+}:
+let
   nmap = keymap.mkKeyLua "n";
   basedpyright = pkgs.basedpyright.overrideAttrs rec {
     pname = "basedpyright";
@@ -22,14 +23,15 @@
       hash = npmDepsHash;
     };
   };
-in {
+in
+{
   plugins = {
     lsp = {
       enable = true;
       servers = {
         nixd = {
           enable = true;
-          settings.formatting.command = ["alejandra"];
+          settings.formatting.command = [ "nixfmt" ];
           onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
         };
         basedpyright = {
@@ -83,8 +85,11 @@ in {
       settings = {
         keymap = {
           preset = "super-tab";
-          "<C-y>" = ["select_and_accept"];
-          "<CR>" = ["accept" "fallback"];
+          "<C-y>" = [ "select_and_accept" ];
+          "<CR>" = [
+            "accept"
+            "fallback"
+          ];
           cmdline = {
             preset = "super-tab";
           };

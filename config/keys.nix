@@ -1,6 +1,13 @@
-{keymap, ...}: let
-  inherit (keymap) nmap imap nlua mkKeyLua;
-in {
+{ keymap, ... }:
+let
+  inherit (keymap)
+    nmap
+    imap
+    nlua
+    mkKeyLua
+    ;
+in
+{
   keymaps = [
     (nmap "<leader>bn" ":bn<cr>" "Next Buffer")
     (nmap "<leader>bp" ":bp<cr>" "Previous Buffer")
@@ -54,7 +61,9 @@ in {
     (nmap "<leader>xx" ":Trouble diagnostics toggle<cr>" "Diagnostics")
     (nmap "<leader>xX" ":Trouble diagnostics toggle filter.buf=0<cr>" "Buffer Diagnostics")
     (nmap "<leader>xs" ":Trouble symbols toggle focus=false<cr>" "Symbols")
-    (nmap "<leader>xl" ":Trouble lsp toggle focus=false win.position=right<cr>" "LSP Definitions / References")
+    (nmap "<leader>xl" ":Trouble lsp toggle focus=false win.position=right<cr>"
+      "LSP Definitions / References"
+    )
     (nmap "<leader>xL" ":Trouble loclist toggle<cr>" "Location List")
     (nmap "<leader>xQ" ":Trouble qflist toggle<cr>" "Quickfix List")
 
@@ -70,11 +79,11 @@ in {
 
     # Flash keybindings
     # https://github.com/folke/flash.nvim?tab=readme-ov-file#-installation
-    (mkKeyLua ["n" "x" "o"] "s" "require('flash').jump()" "Flash")
-    (mkKeyLua ["n" "x" "o"] "S" "require('flash').treesitter()" "Flash Treesitter")
-    (mkKeyLua ["o"] "r" "require('flash').remote()" "Remote Flash")
-    (mkKeyLua ["o" "x"] "R" "require('flash').treesitter_search()" "Treesitter Search")
-    (mkKeyLua ["c"] "<c-s>" "require('flash').toggle()" "Toggle Flash Search")
+    (mkKeyLua [ "n" "x" "o" ] "s" "require('flash').jump()" "Flash")
+    (mkKeyLua [ "n" "x" "o" ] "S" "require('flash').treesitter()" "Flash Treesitter")
+    (mkKeyLua [ "o" ] "r" "require('flash').remote()" "Remote Flash")
+    (mkKeyLua [ "o" "x" ] "R" "require('flash').treesitter_search()" "Treesitter Search")
+    (mkKeyLua [ "c" ] "<c-s>" "require('flash').toggle()" "Toggle Flash Search")
 
     # (tmap "<esc><esc>" "<C-\\><C-n>" "Exit Terminal")
   ];

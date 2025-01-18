@@ -1,11 +1,15 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   plugins.conform-nvim = {
     enable = true;
     settings = {
       formatters_by_ft = {
-        nix = ["alejandra"];
-        python = ["ruff_format" "ruff_fix"];
-        rust = ["rustfmt"];
+        nix = [ "nixfmt" ];
+        python = [
+          "ruff_format"
+          "ruff_fix"
+        ];
+        rust = [ "rustfmt" ];
         "_" = [
           "squeeze_blanks"
           "trim_whitespace"
