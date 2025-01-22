@@ -32,7 +32,7 @@ in
 
     # (nmap "<leader>e" ":Neotree<cr>" "Show Explorer")
     # (nmap "<leader>E" ":Neotree toggle<cr>" "Toggle Explorer")
-    # (nmap "<leader>u" ":UndotreeToggle<cr>" "Toggle UndoTree")
+    (nmap "<leader>u" ":UndotreeToggle<cr>" "Toggle UndoTree")
     (nmap "<leader>y" ":Yazi<cr>" "Open File Browser (Yazi)")
 
     (nlua "<leader>gg" "Snacks.lazygit()" "Open LazyGit")
