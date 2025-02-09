@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ./conform.nix
@@ -6,7 +6,6 @@
     ./git.nix
     ./lsp.nix
     ./multicursor.nix
-    ./telescope.nix
     ./treesitter.nix
   ];
 
@@ -38,6 +37,12 @@
         mode = "tabs";
         diagnostics = "nvim_lsp";
         separator_style = "slant";
+        show_duplicate_prefix = false;
+        custom_filter = lib.nixvim.mkRaw ''
+          function(buf_number, buf_numbers)
+            return vim.bo[buf_number].filetype ~= "snacks_picker_input"
+          end
+        '';
       };
     };
     # Like harpoon to save files
@@ -49,8 +54,6 @@
         buffer_leader_key = "m";
       };
     };
-    # Better help viewer
-    helpview.enable = true;
     # Better status line
     lualine.enable = true;
     # Indent guides
@@ -115,17 +118,26 @@
       autoLoad = true;
     };
 
+    web-devicons.enable = true;
+
+    mini = {
+      enable = true;
+      modules = {
+        ai = { };
+      };
+    };
+
     snacks = {
       enable = true;
       # Build on latest until nixpkgs catches up
       package = pkgs.vimUtils.buildVimPlugin {
         pname = "snacks.nvim";
-        version = "v2.20.0";
+        version = "2025-02-09";
         src = pkgs.fetchFromGitHub {
           owner = "folke";
           repo = "snacks.nvim";
-          rev = "76a5dcfb318d623022dada44c66453d9cb9a6eaa";
-          sha256 = "sha256-YUjTuY47fWnHd9/z6WqFD0biW+wn9zLLsOVJibwpgKw=";
+          rev = "2f2f4c95afc280058f99ed9eb211a70a6a3e9edb";
+          sha256 = "sha256-JsZ2WhED4PO8eD+2AKn2ceqcKB9+B3PE2N8DVtywyMs=";
         };
         meta.homepage = "https://github.com/folke/snacks.nvim/";
         meta.hydraPlatforms = [ ];
@@ -157,9 +169,13 @@
       settings = {
         input.enabled = true;
         lazygit.enabled = true;
+        notifier.enabled = true;
         # profiler.enabled = true;
         terminal.enabled = true;
-        picker.enabled = true;
+        picker = {
+          enabled = true;
+          db.sqlite3_path = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
+        };
         explorer.enabled = true;
       };
     };

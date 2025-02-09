@@ -53,7 +53,8 @@
       pattern = "*.txt";
       callback = lib.nixvim.mkRaw ''
         function()
-          if vim.bo.filetype == 'help' and tonumber(vim.fn.winnr('$')) > 1 then
+          if vim.bo.filetype == 'help' and vim.b.already_opened == nil then
+            vim.b.already_opened = true
             vim.cmd('wincmd T')
           end
         end

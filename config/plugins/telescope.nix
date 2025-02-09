@@ -1,3 +1,4 @@
+# Keeping in case I want to go back to telescope
 { keymap, ... }:
 {
   plugins = {
