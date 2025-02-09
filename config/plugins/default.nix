@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./conform.nix
@@ -37,6 +38,15 @@
         mode = "tabs";
         diagnostics = "nvim_lsp";
         separator_style = "slant";
+      };
+    };
+    # Like harpoon to save files
+    arrow = {
+      enable = true;
+      settings = {
+        show_icons = true;
+        leader_key = ";";
+        buffer_leader_key = "m";
       };
     };
     # Better help viewer
@@ -107,11 +117,50 @@
 
     snacks = {
       enable = true;
+      # Build on latest until nixpkgs catches up
+      package = pkgs.vimUtils.buildVimPlugin {
+        pname = "snacks.nvim";
+        version = "v2.20.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "folke";
+          repo = "snacks.nvim";
+          rev = "76a5dcfb318d623022dada44c66453d9cb9a6eaa";
+          sha256 = "sha256-YUjTuY47fWnHd9/z6WqFD0biW+wn9zLLsOVJibwpgKw=";
+        };
+        meta.homepage = "https://github.com/folke/snacks.nvim/";
+        meta.hydraPlatforms = [ ];
+        nvimSkipModule = [
+          # Requires setup call first
+          "snacks.dashboard"
+          "snacks.debug"
+          "snacks.dim"
+          "snacks.git"
+          "snacks.indent"
+          "snacks.input"
+          "snacks.lazygit"
+          "snacks.notifier"
+          "snacks.scratch"
+          "snacks.scroll"
+          "snacks.terminal"
+          "snacks.win"
+          "snacks.words"
+          "snacks.zen"
+          "snacks.picker.core.list"
+          "snacks.picker.config.highlights"
+          "snacks.picker.actions"
+          # Optional trouble integration
+          "trouble.sources.profiler"
+          # TODO: Plugin requires libsqlite available, create a test for it
+          "snacks.picker.util.db"
+        ];
+      };
       settings = {
         input.enabled = true;
         lazygit.enabled = true;
         # profiler.enabled = true;
         terminal.enabled = true;
+        picker.enabled = true;
+        explorer.enabled = true;
       };
     };
   };

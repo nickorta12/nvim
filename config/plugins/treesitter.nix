@@ -17,6 +17,7 @@
         markdown
         nix
         python
+        regex
         rust
         toml
         xml
