@@ -40,11 +40,6 @@
       "ftplugin/alpha" = {
         localOpts.buflisted = false;
       };
-      "ftplugin/help.vim" = {
-        extraConfigVim = ''
-          wincmd T
-        '';
-      };
     };
 
   autoCmd = [
@@ -52,6 +47,17 @@
       event = [ "FileType" ];
       pattern = "TelescopePrompt";
       command = "inoremap <buffer><silent> <ESC> <ESC>:close!<CR>";
+    }
+    {
+      event = [ "BufEnter" ];
+      pattern = "*.txt";
+      callback = lib.nixvim.mkRaw ''
+        function()
+          if vim.bo.filetype == 'help' and tonumber(vim.fn.winnr('$')) > 1 then
+            vim.cmd('wincmd T')
+          end
+        end
+      '';
     }
   ];
 }

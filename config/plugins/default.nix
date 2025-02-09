@@ -39,6 +39,8 @@
         separator_style = "slant";
       };
     };
+    # Better help viewer
+    helpview.enable = true;
     # Better status line
     lualine.enable = true;
     # Indent guides
