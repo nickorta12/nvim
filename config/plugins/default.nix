@@ -4,6 +4,7 @@
     ./extra.nix
     ./git.nix
     ./lsp.nix
+    ./multicursor.nix
     ./telescope.nix
     ./treesitter.nix
   ];
