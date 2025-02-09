@@ -5,35 +5,26 @@
 }:
 let
   nmap = keymap.mkKeyLua "n";
-  basedpyright = pkgs.basedpyright.overrideAttrs rec {
-    pname = "basedpyright";
-    version = "1.24.0";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "detachhead";
-      repo = "basedpyright";
-      tag = "v${version}";
-      hash = "sha256-46Icd8zrblD3fSeY1izEOMrYwTv+a4YE1cmMYUJtewk=";
-    };
-
-    npmDepsHash = "sha256-XfdJVy4+GQ9gt0bo0/1DZvCKU1t4UgThNEBqC/rId9k=";
-    npmDeps = pkgs.fetchNpmDeps {
-      inherit src;
-      name = "${pname}-${version}-npm-deps";
-      hash = npmDepsHash;
-    };
-  };
+  basedpyright = pkgs.callPackage ./basedpyright.nix { };
 in
 {
   plugins = {
     lsp = {
       enable = true;
       servers = {
-        nixd = {
+        nil_ls = {
           enable = true;
-          settings.formatting.command = [ "nixfmt" ];
+          settings.nix = {
+            maxMemoryMB = 4096;
+            flake.autoEvalInputs = true;
+          };
           onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
         };
+        # nixd = {
+        #   enable = true;
+        #   settings.formatting.command = [ "nixfmt" ];
+        #   onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
+        # };
         basedpyright = {
           enable = true;
           package = basedpyright;
