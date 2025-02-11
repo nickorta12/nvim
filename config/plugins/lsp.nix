@@ -1,7 +1,6 @@
 {
   keymap,
   pkgs,
-  lib,
   ...
 }:
 let
@@ -13,19 +12,19 @@ in
     lsp = {
       enable = true;
       servers = {
-        nil_ls = {
-          enable = true;
-          settings.nix = {
-            maxMemoryMB = lib.mkDefault 4096;
-            flake.autoEvalInputs = true;
-          };
-          onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
-        };
-        # nixd = {
+        # nil_ls = {
         #   enable = true;
-        #   settings.formatting.command = [ "nixfmt" ];
+        #   settings.nix = {
+        #     maxMemoryMB = lib.mkDefault 4096;
+        #     flake.autoEvalInputs = true;
+        #   };
         #   onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
         # };
+        nixd = {
+          enable = true;
+          settings.formatting.command = [ "nixfmt" ];
+          onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
+        };
         basedpyright = {
           enable = true;
           package = basedpyright;
