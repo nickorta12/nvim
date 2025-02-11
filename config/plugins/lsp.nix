@@ -1,6 +1,7 @@
 {
   keymap,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -15,7 +16,7 @@ in
         nil_ls = {
           enable = true;
           settings.nix = {
-            maxMemoryMB = 4096;
+            maxMemoryMB = lib.mkDefault 4096;
             flake.autoEvalInputs = true;
           };
           onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
