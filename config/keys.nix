@@ -25,6 +25,7 @@ in
     (nmap "<leader>tp" ":tabp<cr>" "Previous Tab")
     (nmap "<leader>td" ":tabclose<cr>" "Close Tab")
     (nmap "<leader>tc" ":tabnew<cr>" "New Tab")
+    (nmap "<leader>tt" ":wincmd T<cr>" "Open in tab")
 
     (nlua "<leader>T" "Snacks.terminal()" "Open terminal")
 

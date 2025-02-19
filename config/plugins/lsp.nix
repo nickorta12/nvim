@@ -1,12 +1,13 @@
 {
   keymap,
-  pkgs,
+  # pkgs,
   ...
 }:
 let
   nmap = keymap.mkKeyLua "n";
-  basedpyright = pkgs.callPackage ./basedpyright.nix { };
 in
+# Basedpyright caught up
+# basedpyright = pkgs.callPackage ./basedpyright.nix { };
 {
   plugins = {
     lsp = {
@@ -27,7 +28,7 @@ in
         };
         basedpyright = {
           enable = true;
-          package = basedpyright;
+          # package = basedpyright;
           settings.basedpyright = {
             analysis.typeCheckingMode = "basic";
             inlayHints.callArgumentNames = true;
