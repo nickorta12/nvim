@@ -76,6 +76,17 @@ in
     blink-cmp = {
       enable = true;
       settings = {
+        cmdline = {
+          keymap.preset = "super-tab";
+          completion.menu.draw.columns = {
+            __unkeyed-1 = {
+              __unkeyed-1 = "kind_icon";
+            };
+            __unkeyed-2 = {
+              __unkeyed-1 = "label";
+            };
+          };
+        };
         keymap = {
           preset = "super-tab";
           "<C-y>" = [ "select_and_accept" ];
@@ -83,9 +94,6 @@ in
             "accept"
             "fallback"
           ];
-          cmdline = {
-            preset = "super-tab";
-          };
         };
         #   appearance.use_nvim_cmp_as_default = true;
         signature.enabled = true;
