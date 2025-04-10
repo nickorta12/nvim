@@ -79,6 +79,7 @@
                   enable = true;
                   autoLoad = true;
                 };
+                opts.wrap = lib.mkForce true;
               };
           };
         in

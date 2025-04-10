@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   globals = {
     mapleader = " ";
@@ -21,7 +22,7 @@
     termguicolors = true;
     scrolloff = 8;
 
-    wrap = false;
+    wrap = lib.mkDefault false;
 
     tabstop = 4;
     softtabstop = 4;
