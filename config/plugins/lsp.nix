@@ -62,7 +62,18 @@ in
     lspkind.enable = true;
     lsp-status.enable = true;
 
-    rustaceanvim.enable = true;
+    rustaceanvim = {
+      enable = true;
+      settings.server.default_settings.rust-analyzer = {
+        files.excludeDirs = [
+          ".git"
+          ".cargo"
+          "target"
+          ".direnv"
+        ];
+
+      };
+    };
     lsp-signature = {
       enable = true;
       settings = {
@@ -115,4 +126,5 @@ in
       enable = true;
     };
   };
+  dependencies.rust-analyzer.enable = false;
 }
