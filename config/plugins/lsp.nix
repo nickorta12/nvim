@@ -77,13 +77,21 @@ in
       enable = true;
       settings = {
         cmdline = {
-          keymap.preset = "super-tab";
-          completion.menu.draw.columns = {
-            __unkeyed-1 = {
-              __unkeyed-1 = "kind_icon";
-            };
-            __unkeyed-2 = {
-              __unkeyed-1 = "label";
+          keymap = {
+            "<Tab>" = [
+              "show"
+              "accept"
+            ];
+          };
+          completion.menu = {
+            auto_show = true;
+            draw.columns = {
+              __unkeyed-1 = {
+                __unkeyed-1 = "kind_icon";
+              };
+              __unkeyed-2 = {
+                __unkeyed-1 = "label";
+              };
             };
           };
         };
@@ -95,7 +103,7 @@ in
             "fallback"
           ];
         };
-        #   appearance.use_nvim_cmp_as_default = true;
+        completion.trigger.show_in_snippet = false;
         signature.enabled = true;
       };
     };
