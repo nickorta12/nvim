@@ -59,7 +59,6 @@ in
       ];
     };
 
-    lspkind.enable = true;
     lsp-status.enable = true;
 
     rustaceanvim = {
