@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
@@ -19,35 +15,63 @@
   outputs =
     {
       nixvim,
-      flake-parts,
+      nixpkgs,
+      self,
       ...
-    }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
+    }:
+    let
+      supportedSystems = [
         "x86_64-linux"
         "aarch64-linux"
-        "x86_64-darwin"
         "aarch64-darwin"
+        "x86_64-darwin"
       ];
 
-      perSystem =
+      forEachSupportedSystem =
+        f:
+        nixpkgs.lib.genAttrs supportedSystems (
+          system:
+          let
+
+            pkgs = import nixpkgs {
+              inherit system;
+              config = {
+                allowUnfree = true;
+              };
+            };
+            nixvimLib = nixvim.lib.${system};
+            nixvim' = nixvim.legacyPackages.${system};
+            nlib = import ./lib.nix pkgs.lib;
+            nixvimModule = {
+              inherit pkgs;
+              module = import ./config; # import the module directly
+              # You can use `extraSpecialArgs` to pass additional arguments to your module files
+              extraSpecialArgs = {
+                inherit (nlib) keymap;
+              };
+            };
+          in
+          f {
+            inherit
+              system
+              pkgs
+              nixvimLib
+              nixvim'
+              nixvimModule
+              ;
+          }
+        );
+    in
+    {
+      packages = forEachSupportedSystem (
         {
-          pkgs,
           system,
+          pkgs,
+          nixvim',
+          nixvimModule,
           ...
         }:
-        let
-          nixvimLib = nixvim.lib.${system};
-          nixvim' = nixvim.legacyPackages.${system};
-          nlib = import ./lib.nix pkgs.lib;
-          nixvimModule = {
-            inherit pkgs;
-            module = import ./config; # import the module directly
-            # You can use `extraSpecialArgs` to pass additional arguments to your module files
-            extraSpecialArgs = {
-              inherit (nlib) keymap;
-            };
-          };
+        {
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
           bnvim = nixvim'.makeNixvimWithModule {
             inherit pkgs;
@@ -76,20 +100,18 @@
                 opts.wrap = lib.mkForce true;
               };
           };
-        in
+          default = self.packages.${system}.nvim;
+        }
+      );
+      checks = forEachSupportedSystem (
         {
-          checks = {
-            # Run `nix flake check .` to verify that your config is not broken
-            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-          };
-
-          packages = {
-            # Lets you run `nix run .` to start nixvim
-            default = nvim;
-            inherit bnvim;
-          };
-
-          formatter = pkgs.nixfmt-rfc-style;
-        };
+          nixvimLib,
+          nixvimModule,
+          ...
+        }:
+        {
+          default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+        }
+      );
     };
 }
