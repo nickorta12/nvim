@@ -181,4 +181,9 @@
       };
     };
   };
+
+  dependencies = {
+    git.enable = false;
+    yazi.package = pkgs.yazi.override { optionalDeps = [ ]; };
+  };
 }

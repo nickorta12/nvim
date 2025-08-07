@@ -1,6 +1,5 @@
 {
   keymap,
-  # pkgs,
   ...
 }:
 let

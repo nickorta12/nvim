@@ -6,15 +6,16 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "meznaric";
       repo = "key-analyzer.nvim";
-      rev = "15d2663dd5014ef2814f2df1edc04494f2c1ee56";
-      hash = "sha256-ZR6QfaPL3hBNdPFUoS6Q9NKwnYQovUEf5eAcw+uiFSM=";
+      rev = "4e4bef34498e821bcbd5203f44db8b67e4f10e04";
+      hash = "sha256-os2Z+Lyu22EcSq2zaelV26ZRGulNEmF5T1iBn0wTliA=";
     };
-    patches = [ ./no-promo.patch ];
   };
 in
 {
   extraPlugins = [ key-analyzer ];
   extraConfigLua = ''
-    require("key-analyzer").setup()
+    require("key-analyzer").setup({
+      promotion = false
+    })
   '';
 }
