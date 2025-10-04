@@ -13,6 +13,7 @@
         json
         jsonc
         just
+        kdl
         lua
         markdown
         nix
