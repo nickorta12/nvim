@@ -6,11 +6,21 @@
     ./plugins
   ];
 
-  performance.byteCompileLua = {
-    enable = true;
-    nvimRuntime = true;
-    configs = true;
-    plugins = false;
+  performance = {
+    byteCompileLua = {
+      enable = false;
+      nvimRuntime = true;
+      configs = true;
+      plugins = false;
+    };
+
+    combinePlugins = {
+      enable = false;
+      standalonePlugins = [
+        "nvim-treesitter"
+        "conform.nvim"
+      ];
+    };
   };
 
   colorschemes = lib.mkDefault {

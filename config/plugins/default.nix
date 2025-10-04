@@ -5,6 +5,7 @@
     ./extra.nix
     ./git.nix
     ./lsp.nix
+    ./minimal.nix
     ./multicursor.nix
     ./treesitter.nix
   ];
@@ -24,8 +25,6 @@
   plugins = {
     # Reopens files at last edit position
     lastplace.enable = true;
-    # Better comments
-    comment.enable = true;
     # Auto make pairs
     nvim-autopairs.enable = true;
     # Better buffer delete
@@ -58,8 +57,6 @@
     lualine.enable = true;
     # Indent guides
     indent-blankline.enable = true;
-    # Edit files in a buffer
-    oil.enable = true;
     # Better file finder
     yazi = {
       enable = true;
@@ -76,23 +73,6 @@
     #     followCurrentFile.enabled = true;
     #   };
     # };
-    # Better surrounding of characters
-    nvim-surround = {
-      enable = true;
-      settings.keymaps = {
-        insert = "<C-g>z";
-        insert_line = "<C-g>Z";
-        normal = "gz";
-        normal_cur = "gzz";
-        normal_line = "gZ";
-        normal_cur_line = "gZZ";
-        visual = "Z";
-        visual_line = "gZ";
-        delete = "dz";
-        change = "cz";
-        change_line = "cZ";
-      };
-    };
 
     # Better vim motions
     flash = {
@@ -120,53 +100,8 @@
 
     web-devicons.enable = true;
 
-    mini = {
-      enable = true;
-      modules = {
-        ai = { };
-      };
-    };
-
     snacks = {
       enable = true;
-      # Build on latest until nixpkgs catches up
-      # Nixpkgs caught up, keep here for future reference
-      # package = pkgs.vimUtils.buildVimPlugin {
-      #   pname = "snacks.nvim";
-      #   version = "2025-02-09";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "folke";
-      #     repo = "snacks.nvim";
-      #     rev = "2f2f4c95afc280058f99ed9eb211a70a6a3e9edb";
-      #     sha256 = "sha256-JsZ2WhED4PO8eD+2AKn2ceqcKB9+B3PE2N8DVtywyMs=";
-      #   };
-      #   meta.homepage = "https://github.com/folke/snacks.nvim/";
-      #   meta.hydraPlatforms = [ ];
-      #   nvimSkipModule = [
-      #     # Requires setup call first
-      #     "snacks.dashboard"
-      #     "snacks.debug"
-      #     "snacks.dim"
-      #     "snacks.git"
-      #     "snacks.indent"
-      #     "snacks.input"
-      #     "snacks.lazygit"
-      #     "snacks.notifier"
-      #     "snacks.scratch"
-      #     "snacks.scroll"
-      #     "snacks.terminal"
-      #     "snacks.win"
-      #     "snacks.words"
-      #     "snacks.zen"
-      #     "snacks.picker.core.list"
-      #     "snacks.picker.config.highlights"
-      #     "snacks.picker.actions"
-      #     # Optional trouble integration
-      #     "trouble.sources.profiler"
-      #     # TODO: Plugin requires libsqlite available, create a test for it
-      #     "snacks.picker.util.db"
-      #   ];
-      # };
       settings = {
         input.enabled = true;
         lazygit.enabled = true;

@@ -80,6 +80,8 @@
               {
                 imports = [
                   ./config/config.nix
+                  ./config/plugins/minimal.nix
+                  ./config/plugins/treesitter.nix
                 ];
                 colorschemes = lib.mkDefault {
                   tokyonight = {

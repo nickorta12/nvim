@@ -1,5 +1,14 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 {
+  extraPackages = with pkgs; [
+    jq
+    just
+    kdlfmt
+    shfmt
+    xmlstarlet
+    yamlfmt
+    markdownlint-cli2
+  ];
   plugins.conform-nvim = {
     enable = true;
     settings = {
@@ -9,7 +18,14 @@
           "ruff_format"
           "ruff_fix"
         ];
+        just = [ "just" ];
+        json = [ "jq" ];
+        kdl = [ "kdlfmt" ];
+        markdown = [ "markdownlint-cli2" ];
         rust = [ "rustfmt" ];
+        sh = [ "shfmt" ];
+        xml = [ "xmlstarlet" ];
+        yaml = [ "yamlfmt" ];
         "_" = [
           "squeeze_blanks"
           "trim_whitespace"
