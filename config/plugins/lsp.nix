@@ -5,8 +5,6 @@
 let
   nmap = keymap.mkKeyLua "n";
 in
-# Basedpyright caught up
-# basedpyright = pkgs.callPackage ./basedpyright.nix { };
 {
   plugins = {
     lsp = {

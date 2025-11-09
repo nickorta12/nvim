@@ -2,7 +2,6 @@
 {
   imports = [
     ./conform.nix
-    ./extra.nix
     ./git.nix
     ./lsp.nix
     ./minimal.nix
