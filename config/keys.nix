@@ -129,14 +129,6 @@ in
     (nlua "<leader>sR" "Snacks.picker.resume()" "Resume")
     (nlua "<leader>su" "Snacks.picker.undo()" "Undo History")
     (nlua "<leader>uC" "Snacks.picker.colorschemes()" "Colorschemes")
-    # -- LSP
-    (nlua "gd" "Snacks.picker.lsp_definitions()" "Goto Definition")
-    (nlua "gD" "Snacks.picker.lsp_declarations()" "Goto Declaration")
-    # (nlua "gr" "Snacks.picker.lsp_references()" nowait = true "References" )
-    (nlua "gI" "Snacks.picker.lsp_implementations()" "Goto Implementation")
-    (nlua "gy" "Snacks.picker.lsp_type_definitions()" "Goto T[y]pe Definition")
-    (nlua "<leader>ss" "Snacks.picker.lsp_symbols()" "LSP Symbols")
-    (nlua "<leader>sS" "Snacks.picker.lsp_workspace_symbols()" "LSP Workspace Symbols")
 
     # Flash keybindings
     # https://github.com/folke/flash.nvim?tab=readme-ov-file#-installation
