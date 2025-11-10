@@ -6,6 +6,17 @@ let
     nlua
     mkKeyLua
     ;
+
+  # https://github.com/folke/snacks.nvim/issues/1628#issuecomment-2748889194
+  smartExplorer = /* lua */ ''
+    if Snacks.picker.get({ source = "explorer" })[1] == nil then
+      Snacks.picker.explorer()
+    elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == true then
+      Snacks.picker.explorer()
+    elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == false then
+      Snacks.picker.get({ source = "explorer" })[1]:focus()
+    end
+  '';
 in
 {
   keymaps = [
@@ -19,7 +30,6 @@ in
     (nmap "<leader>bD" ":%bd|e#<cr>" "Close all Other Buffers")
     (nmap "<leader>bk" ":BufferLinePick<cr>" "Pick Buffer")
     (nmap "<leader>bK" ":BufferLinePickClose<cr>" "Pick Buffer Delete")
-    # (nmap "<leader>bl" ":Neotree buffers<cr>" "List Buffers")
 
     (nmap "<leader>tn" ":tabn<cr>" "Next Tab")
     (nmap "<leader>tp" ":tabp<cr>" "Previous Tab")
@@ -34,8 +44,6 @@ in
     (nmap "<C-d>" "<C-d>zz" "Scroll Down")
     (nmap "<C-u>" "<C-u>zz" "Scroll Up")
 
-    # (nmap "<leader>e" ":Neotree<cr>" "Show Explorer")
-    # (nmap "<leader>E" ":Neotree toggle<cr>" "Toggle Explorer")
     (nmap "<leader>y" ":Yazi<cr>" "Open File Browser (Yazi)")
 
     (nlua "<leader>gg" /* lua */ "Snacks.lazygit()" "Open LazyGit")
@@ -93,7 +101,8 @@ in
     (nlua "<leader>/" /* lua */ "Snacks.picker.grep()" "Grep")
     (nlua "<leader>:" /* lua */ "Snacks.picker.command_history()" "Command History")
     (nlua "<leader>n" /* lua */ "Snacks.picker.notifications()" "Notification History")
-    (nlua "<leader>e" /* lua */ "Snacks.explorer()" "File Explorer")
+    (nlua "<leader>e" smartExplorer "File Explorer")
+    (nlua "\\" smartExplorer "File Explorer")
     # -- Find
     (nlua "<leader>fb" /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
     (nlua "<leader>ff" /* lua */ "Snacks.picker.files()" "Find Files")

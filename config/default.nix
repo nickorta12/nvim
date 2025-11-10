@@ -8,7 +8,7 @@
 
   performance = {
     byteCompileLua = {
-      enable = false;
+      enable = true;
       nvimRuntime = true;
       configs = true;
       plugins = false;
