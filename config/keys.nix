@@ -132,7 +132,7 @@ in
     (nlua "<leader>sH" /* lua */ "Snacks.picker.highlights()" "Highlights")
     (nlua "<leader>si" /* lua */ "Snacks.picker.icons()" "Icons")
     (nlua "<leader>sj" /* lua */ "Snacks.picker.jumps({layout='vertical'})" "Jumps")
-    (nlua "<leader>sk" /* lua */ "Snacks.picker.keymaps({layout='vertical'})" "Keymaps")
+    (nlua "<leader>sk" /* lua */ "Snacks.picker.keymaps({layout={preset='vertical', preview=false}})" "Keymaps")
     (nlua "<leader>sl" /* lua */ "Snacks.picker.loclist()" "Location List")
     (nlua "<leader>sm" /* lua */ "Snacks.picker.marks()" "Marks")
     (nlua "<leader>sq" /* lua */ "Snacks.picker.qflist()" "Quickfix List")
