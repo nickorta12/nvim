@@ -23,24 +23,26 @@ in
 
     (nmap "<leader>tn" ":tabn<cr>" "Next Tab")
     (nmap "<leader>tp" ":tabp<cr>" "Previous Tab")
+    (nmap "<leader>t]" ":tabn<cr>" "Next Tab")
+    (nmap "<leader>t[" ":tabp<cr>" "Previous Tab")
     (nmap "<leader>td" ":tabclose<cr>" "Close Tab")
     (nmap "<leader>tc" ":tabnew<cr>" "New Tab")
     (nmap "<leader>tt" ":wincmd T<cr>" "Open in tab")
-
-    (nlua "<leader>T" "Snacks.terminal()" "Open terminal")
+    (nmap "<leader>tf" ":tabfirst<cr>" "First tab")
+    (nmap "<leader>tl" ":tablast<cr>" "Last tab")
 
     (nmap "<C-d>" "<C-d>zz" "Scroll Down")
     (nmap "<C-u>" "<C-u>zz" "Scroll Up")
 
     # (nmap "<leader>e" ":Neotree<cr>" "Show Explorer")
     # (nmap "<leader>E" ":Neotree toggle<cr>" "Toggle Explorer")
-    (nmap "<leader>u" ":UndotreeToggle<cr>" "Toggle UndoTree")
     (nmap "<leader>y" ":Yazi<cr>" "Open File Browser (Yazi)")
 
-    (nlua "<leader>gg" "Snacks.lazygit()" "Open LazyGit")
-    (nlua "<leader>gl" "Snacks.lazygit.log()" "LazyGit Log")
-    (nlua "<leader>gL" "Snacks.lazygit.log_file()" "LazyGit Log File")
-    (nmap "<leader>gb" ":Git blame<CR>" "Git Blame")
+    (nlua "<leader>gg" /* lua */ "Snacks.lazygit()" "Open LazyGit")
+    (nlua "<c-g>" /* lua */ "Snacks.lazygit()" "Open LazyGit")
+    (nlua "<leader>gl" /* lua */ "Snacks.lazygit.log()" "LazyGit Log")
+    (nlua "<leader>gL" /* lua */ "Snacks.lazygit.log_file()" "LazyGit Log File")
+    (nmap "<leader>gB" ":Git blame<CR>" "Git Blame")
     (nmap "<leader>gs" ":Git status<CR>" "Git Status")
     (nmap "<leader>gd" ":Gitsigns diffthis<CR>" "Git Diff")
 
@@ -48,6 +50,11 @@ in
     (nmap "<c-w>v" ":vsplit<cr><c-w>l" "Split window vertically")
     (nmap "<leader>ws" ":split<cr><c-w>j" "Split window")
     (nmap "<leader>wv" ":vsplit<cr><c-w>l" "Split window vertically")
+
+    (nmap "<c-h>" "<c-w>h" "Go to Left Window")
+    (nmap "<c-j>" "<c-w>j" "Go to Lower Window")
+    (nmap "<c-k>" "<c-w>k" "Go to Upper Window")
+    (nmap "<c-l>" "<c-w>l" "Go to Right Window")
 
     (nmap "<leader>wk" "<c-w>k" "Window Up")
     (nmap "<leader>wj" "<c-w>j" "Window Down")
@@ -69,7 +76,7 @@ in
     (nmap "<leader>xL" ":Trouble loclist toggle<cr>" "Location List")
     (nmap "<leader>xQ" ":Trouble qflist toggle<cr>" "Quickfix List")
 
-    (nlua "<leader>F" "require('conform').format()" "Format buffer")
+    (nlua "<leader>F" /* lua */ "require('conform').format()" "Format buffer")
 
     (nmap "<leader>rw" "yiw:s/<c-r>\"/" "Replace word in line")
     (nmap "<leader>rW" "yiw:%s/<c-r>\"/" "Replace word in file")
@@ -77,66 +84,61 @@ in
     (nmap "<leader>;" "mmA;<esc>`m" "Add semicolon")
     (imap "<c-g>;" "<esc>mmA;<esc>`ma" "Add semicolon")
     (nmap "<leader>," "mmA,<esc>`m" "Add comma")
-    (nmap "<C-g>," "<esc>mmA,<esc>`ma" "Add comma")
+    (imap "<C-g>," "<esc>mmA,<esc>`ma" "Add comma")
 
     # Snacks pickers
     # Top Pickers & Explorer
-    (nlua "<leader><space>" "Snacks.picker.smart()" "Smart Find Files")
-    (nlua "<leader>," "Snacks.picker.buffers()" "Buffers")
-    (nlua "<leader>/" "Snacks.picker.grep()" "Grep")
-    (nlua "<leader>:" "Snacks.picker.command_history()" "Command History")
-    (nlua "<leader>n" "Snacks.picker.notifications()" "Notification History")
-    (nlua "<leader>e" "Snacks.explorer()" "File Explorer")
-    # -- find
-    (nlua "<leader>fb" "Snacks.picker.buffers()" "Buffers")
-    # (nlua "<leader>fc" "Snacks.picker.files({ cwd = vim.fn.stdpath("config") })" "Find Config File" )
-    (nlua "<leader>ff" "Snacks.picker.files()" "Find Files")
-    (nlua "<leader>fg" "Snacks.picker.git_files()" "Find Git Files")
-    (nlua "<leader>fp" "Snacks.picker.projects()" "Projects")
-    (nlua "<leader>fr" "Snacks.picker.recent()" "Recent")
-    # -- git
-    (nlua "<leader>gb" "Snacks.picker.git_branches()" "Git Branches")
-    (nlua "<leader>gl" "Snacks.picker.git_log()" "Git Log")
-    (nlua "<leader>gL" "Snacks.picker.git_log_line()" "Git Log Line")
-    (nlua "<leader>gs" "Snacks.picker.git_status()" "Git Status")
-    (nlua "<leader>gS" "Snacks.picker.git_stash()" "Git Stash")
-    (nlua "<leader>gd" "Snacks.picker.git_diff()" "Git Diff (Hunks)")
-    (nlua "<leader>gf" "Snacks.picker.git_log_file()" "Git Log File")
+    (nlua "<leader><space>" /* lua */ "Snacks.picker.smart()" "Smart Find Files")
+    (nlua "<leader>," /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
+    (nlua "<leader>/" /* lua */ "Snacks.picker.grep()" "Grep")
+    (nlua "<leader>:" /* lua */ "Snacks.picker.command_history()" "Command History")
+    (nlua "<leader>n" /* lua */ "Snacks.picker.notifications()" "Notification History")
+    (nlua "<leader>e" /* lua */ "Snacks.explorer()" "File Explorer")
+    # -- Find
+    (nlua "<leader>fb" /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
+    (nlua "<leader>ff" /* lua */ "Snacks.picker.files()" "Find Files")
+    (nlua "<leader>fg" /* lua */ "Snacks.picker.git_files()" "Find Git Files")
+    (nlua "<leader>fp" /* lua */ "Snacks.picker.projects()" "Projects")
+    (nlua "<leader>fr" /* lua */ "Snacks.picker.recent()" "Recent")
+    # -- Git
+    (nlua "<leader>gb" /* lua */ "Snacks.picker.git_branches({focus='list'})" "Git Branches")
+    (nlua "<leader>gl" /* lua */ "Snacks.picker.git_log({focus='list'})" "Git Log")
+    (nlua "<leader>gL" /* lua */ "Snacks.picker.git_log_line({focus='list'})" "Git Log Line")
+    (nlua "<leader>gs" /* lua */ "Snacks.picker.git_status({focus='list'})" "Git Status")
+    (nlua "<leader>gS" /* lua */ "Snacks.picker.git_stash({focus='list'})" "Git Stash")
+    (nlua "<leader>gd" /* lua */ "Snacks.picker.git_diff({focus='list'})" "Git Diff (Hunks)")
+    (nlua "<leader>gf" /* lua */ "Snacks.picker.git_log_file({focus='list'})" "Git Log File")
     # -- Grep
-    (nlua "<leader>sb" "Snacks.picker.lines()" "Buffer Lines")
-    (nlua "<leader>sB" "Snacks.picker.grep_buffers()" "Grep Open Buffers")
-    (nlua "<leader>sg" "Snacks.picker.grep()" "Grep")
-    # (nlua "<leader>sw" "Snacks.picker.grep_word()" "Visual selection or word" mode = { "n" "x" } )
-    # -- search
-    # (nlua '<leader>s"' "Snacks.picker.registers()" "Registers" )
-    # (nlua '<leader>s/' "Snacks.picker.search_history()" "Search History" )
-    (nlua "<leader>sa" "Snacks.picker.autocmds()" "Autocmds")
-    (nlua "<leader>sb" "Snacks.picker.lines()" "Buffer Lines")
-    (nlua "<leader>sc" "Snacks.picker.command_history()" "Command History")
-    (nlua "<leader>sC" "Snacks.picker.commands()" "Commands")
-    (nlua "<leader>sd" "Snacks.picker.diagnostics()" "Diagnostics")
-    (nlua "<leader>sD" "Snacks.picker.diagnostics_buffer()" "Buffer Diagnostics")
-    (nlua "<leader>sh" "Snacks.picker.help()" "Help Pages")
-    (nlua "<leader>sH" "Snacks.picker.highlights()" "Highlights")
-    (nlua "<leader>si" "Snacks.picker.icons()" "Icons")
-    (nlua "<leader>sj" "Snacks.picker.jumps()" "Jumps")
-    (nlua "<leader>sk" "Snacks.picker.keymaps()" "Keymaps")
-    (nlua "<leader>sl" "Snacks.picker.loclist()" "Location List")
-    (nlua "<leader>sm" "Snacks.picker.marks()" "Marks")
-    # (nlua "<leader>sM" "Snacks.picker.man()" "Man Pages")
-    (nlua "<leader>sp" "Snacks.picker.lazy()" "Search for Plugin Spec")
-    (nlua "<leader>sq" "Snacks.picker.qflist()" "Quickfix List")
-    (nlua "<leader>sR" "Snacks.picker.resume()" "Resume")
-    (nlua "<leader>su" "Snacks.picker.undo()" "Undo History")
-    (nlua "<leader>uC" "Snacks.picker.colorschemes()" "Colorschemes")
+    (nlua "<leader>sb" /* lua */ "Snacks.picker.lines()" "Buffer Lines")
+    (nlua "<leader>sB" /* lua */ "Snacks.picker.grep_buffers()" "Grep Open Buffers")
+    (nlua "<leader>sg" /* lua */ "Snacks.picker.grep()" "Grep")
+    # -- Search
+    (nlua "<leader>sa" /* lua */ "Snacks.picker.autocmds()" "Autocmds")
+    (nlua "<leader>sb" /* lua */ "Snacks.picker.lines()" "Buffer Lines")
+    (nlua "<leader>sc" /* lua */ "Snacks.picker.command_history()" "Command History")
+    (nlua "<leader>sC" /* lua */ "Snacks.picker.commands()" "Commands")
+    (nlua "<leader>sd" /* lua */ "Snacks.picker.diagnostics()" "Diagnostics")
+    (nlua "<leader>sD" /* lua */ "Snacks.picker.diagnostics_buffer()" "Buffer Diagnostics")
+    (nlua "<leader>sh" /* lua */ "Snacks.picker.help()" "Help Pages")
+    (nlua "<leader>sH" /* lua */ "Snacks.picker.highlights()" "Highlights")
+    (nlua "<leader>si" /* lua */ "Snacks.picker.icons()" "Icons")
+    (nlua "<leader>sj" /* lua */ "Snacks.picker.jumps({layout='vertical'})" "Jumps")
+    (nlua "<leader>sk" /* lua */ "Snacks.picker.keymaps({layout='vertical'})" "Keymaps")
+    (nlua "<leader>sl" /* lua */ "Snacks.picker.loclist()" "Location List")
+    (nlua "<leader>sm" /* lua */ "Snacks.picker.marks()" "Marks")
+    (nlua "<leader>sq" /* lua */ "Snacks.picker.qflist()" "Quickfix List")
+    (nlua "<leader>sR" /* lua */ "Snacks.picker.resume()" "Resume")
+    (nlua "<leader>su" /* lua */ "Snacks.picker.undo({focus='list', layout='vertical'})" "Undo History")
+    (nlua "<leader>ft" /* lua */ "Snacks.terminal()" "Terminal")
+    (mkKeyLua [ "n" "t" ] "<c-/>" /* lua */ "Snacks.terminal()" "Terminal")
 
     # Flash keybindings
     # https://github.com/folke/flash.nvim?tab=readme-ov-file#-installation
-    (mkKeyLua [ "n" "x" "o" ] "s" "require('flash').jump()" "Flash")
-    (mkKeyLua [ "n" "x" "o" ] "S" "require('flash').treesitter()" "Flash Treesitter")
-    (mkKeyLua [ "o" ] "r" "require('flash').remote()" "Remote Flash")
-    (mkKeyLua [ "o" "x" ] "R" "require('flash').treesitter_search()" "Treesitter Search")
-    (mkKeyLua [ "c" ] "<c-s>" "require('flash').toggle()" "Toggle Flash Search")
+    (mkKeyLua [ "n" "x" "o" ] "s" /* lua */ "require('flash').jump()" "Flash")
+    (mkKeyLua [ "n" "x" "o" ] "S" /* lua */ "require('flash').treesitter()" "Flash Treesitter")
+    (mkKeyLua [ "o" ] "r" /* lua */ "require('flash').remote()" "Remote Flash")
+    (mkKeyLua [ "o" "x" ] "R" /* lua */ "require('flash').treesitter_search()" "Treesitter Search")
+    (mkKeyLua [ "c" ] "<c-s>" /* lua */ "require('flash').toggle()" "Toggle Flash Search")
 
     # (tmap "<esc><esc>" "<C-\\><C-n>" "Exit Terminal")
   ];
@@ -150,12 +152,12 @@ in
             group = "Buffers";
           }
           {
-            __unkeyed-1 = "<leader>s";
-            group = "Search";
+            __unkeyed-1 = "<leader>f";
+            group = "Find/File";
           }
           {
-            __unkeyed-1 = "<leader>h";
-            group = "GitGutter";
+            __unkeyed-1 = "<leader>s";
+            group = "Search";
           }
           {
             __unkeyed-1 = "<leader>g";
@@ -170,12 +172,20 @@ in
             group = "Tab";
           }
           {
+            __unkeyed-1 = "<leader>r";
+            group = "Replace";
+          }
+          {
             __unkeyed-1 = "<leader>x";
             group = "Diagnostics";
           }
           {
             __unkeyed-1 = "<leader>v";
             group = "LSP";
+          }
+          {
+            __unkeyed-1 = "<leader>u";
+            group = "UI/Toggle";
           }
         ];
       };

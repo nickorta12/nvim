@@ -53,11 +53,11 @@
     };
 
   autoCmd = [
-    {
-      event = [ "FileType" ];
-      pattern = "TelescopePrompt";
-      command = "inoremap <buffer><silent> <ESC> <ESC>:close!<CR>";
-    }
+    # {
+    #   event = [ "FileType" ];
+    #   pattern = "TelescopePrompt";
+    #   command = "inoremap <buffer><silent> <ESC> <ESC>:close!<CR>";
+    # }
     {
       event = [ "BufEnter" ];
       pattern = "*.txt";

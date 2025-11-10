@@ -81,16 +81,6 @@
       };
     };
 
-    # Better undo handling
-    undotree = {
-      enable = true;
-      settings = {
-        SetFocusWhenToggle = 1;
-        HighlightChangedText = 1;
-        WindowLayout = 3;
-      };
-    };
-
     # Transparent background
     transparent = {
       enable = true;
@@ -113,6 +103,14 @@
         };
         explorer.enabled = true;
       };
+      luaConfig.post = ''
+        Snacks.toggle.option("wrap", {name = "Wrap"}):map("<leader>uw")
+        Snacks.toggle.diagnostics():map("<leader>ud")
+        Snacks.toggle.inlay_hints():map("<leader>uh")
+        Snacks.layout.no_preview = {
+          
+        }
+      '';
     };
   };
 

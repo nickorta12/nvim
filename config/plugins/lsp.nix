@@ -1,9 +1,11 @@
 {
   keymap,
+  lib,
   ...
 }:
 let
   inherit (keymap) nlua;
+  inherit (lib.nixvim.lua) toLuaObject;
 in
 {
   plugins = {
@@ -36,30 +38,42 @@ in
         lua_ls.enable = true;
       };
       capabilities = "capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)";
-      keymaps.extra = [
-        (nlua "K" "vim.lsp.buf.hover()" "Hover")
-        (nlua "gi" "vim.lsp.buf.implementation()" "Go to implementation")
-        (nlua "go" "vim.lsp.buf.type_definition()" "Go to type definition")
-        (nlua "gS" "vim.lsp.buf.signature_help()" "Show signature help")
-        # -- LSP
-        (nlua "gd" "Snacks.picker.lsp_definitions()" "Goto Definition")
-        (nlua "gD" "Snacks.picker.lsp_declarations()" "Goto Declaration")
-        (nlua "grr" "Snacks.picker.lsp_references()" "Goto References")
-        (nlua "gri" "Snacks.picker.lsp_implementations()" "Goto Implementation")
-        (nlua "grt" "Snacks.picker.lsp_type_definitions()" "Goto Type Definition")
-        (nlua "<leader>ss" "Snacks.picker.lsp_symbols()" "LSP Symbols")
-        (nlua "<leader>sS" "Snacks.picker.lsp_workspace_symbols()" "LSP Workspace Symbols")
-        (nlua "<F2>" "vim.lsp.buf.rename()" "Rename")
-        (nlua "<F4>" "vim.lsp.buf.code_action()" "Code action")
+      keymaps.extra =
+        let
+          rightbar = toLuaObject {
+            layout = {
+              preset = "right";
+              preview = false;
+            };
+            jump.close = false;
+            auto_close = false;
+            focus = "list";
+          };
+        in
+        [
+          (nlua "K" /* lua */ "vim.lsp.buf.hover()" "Hover")
+          (nlua "gS" /* lua */ "vim.lsp.buf.signature_help()" "Show signature help")
 
-        (nlua "<leader>vd" "vim.lsp.buf.definition()" "Go to definition")
-        (nlua "<leader>vD" "vim.lsp.buf.declaration()" "Go to declaration")
-        (nlua "<leader>vi" "vim.lsp.buf.implementation()" "Go to implementation")
-        (nlua "<leader>vo" "vim.lsp.buf.type_definition()" "Go to type definition")
-        (nlua "<leader>vr" "vim.lsp.buf.references()" "Go to references")
-        (nlua "<leader>vs" "vim.lsp.buf.signature_help()" "Show signature help")
-        (nlua "<leader>vc" "vim.lsp.buf.code_action()" "Code action")
-      ];
+          (nlua "gi" /* lua */ "Snacks.picker.lsp_implementations()" "Goto Implementation")
+          (nlua "go" /* lua */ "Snacks.picker.lsp_type_definitions()" "Goto Type Definition")
+          (nlua "gd" /* lua */ "Snacks.picker.lsp_definitions()" "Goto Definition")
+          (nlua "gD" /* lua */ "Snacks.picker.lsp_declarations()" "Goto Declaration")
+          (nlua "grr" /* lua */ "Snacks.picker.lsp_references(${rightbar})" "Goto References")
+          (nlua "gri" /* lua */ "Snacks.picker.lsp_implementations()" "Goto Implementation")
+          (nlua "grt" /* lua */ "Snacks.picker.lsp_type_definitions()" "Goto Type Definition")
+          (nlua "<leader>ss" /* lua */ "Snacks.picker.lsp_symbols(${rightbar})" "LSP Symbols")
+          (nlua "<leader>sS" /* lua */ "Snacks.picker.lsp_workspace_symbols(${rightbar})" "LSP Workspace Symbols")
+          (nlua "<F2>" /* lua */ "vim.lsp.buf.rename()" "Rename")
+          (nlua "<F4>" /* lua */ "vim.lsp.buf.code_action()" "Code action")
+
+          (nlua "<leader>vd" /* lua */ "vim.lsp.buf.definition()" "Go to definition")
+          (nlua "<leader>vD" /* lua */ "vim.lsp.buf.declaration()" "Go to declaration")
+          (nlua "<leader>vi" /* lua */ "vim.lsp.buf.implementation()" "Go to implementation")
+          (nlua "<leader>vo" /* lua */ "vim.lsp.buf.type_definition()" "Go to type definition")
+          (nlua "<leader>vr" /* lua */ "vim.lsp.buf.references()" "Go to references")
+          (nlua "<leader>vs" /* lua */ "vim.lsp.buf.signature_help()" "Show signature help")
+          (nlua "<leader>vc" /* lua */ "vim.lsp.buf.code_action()" "Code action")
+        ];
     };
 
     lsp-status.enable = true;

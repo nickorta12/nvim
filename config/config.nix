@@ -29,5 +29,6 @@
     shiftwidth = 4;
 
     timeoutlen = 500;
+    winborder = "rounded";
   };
 }
