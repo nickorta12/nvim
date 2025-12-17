@@ -1,4 +1,5 @@
 {
+  pkgs,
   keymap,
   lib,
   ...
@@ -25,13 +26,17 @@ in
           settings.formatting.command = [ "nixfmt" ];
           onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
         };
-        basedpyright = {
+        # basedpyright = {
+        #   enable = true;
+        #   # package = basedpyright;
+        #   settings.basedpyright = {
+        #     analysis.typeCheckingMode = "basic";
+        #     inlayHints.callArgumentNames = true;
+        #   };
+        # };
+        ty = {
           enable = true;
-          # package = basedpyright;
-          settings.basedpyright = {
-            analysis.typeCheckingMode = "basic";
-            inlayHints.callArgumentNames = true;
-          };
+          package = pkgs.callPackage ./ty.nix { };
         };
         ruff.enable = true;
         jsonls.enable = true;
