@@ -3,7 +3,6 @@
   extraPackages = with pkgs; [
     jq
     just
-    kdlfmt
     shfmt
     xmlstarlet
     yamlfmt
@@ -20,7 +19,6 @@
         ];
         just = [ "just" ];
         json = [ "jq" ];
-        kdl = [ "kdlfmt" ];
         markdown = [ "markdownlint-cli2" ];
         rust = [ "rustfmt" ];
         sh = [ "shfmt" ];
