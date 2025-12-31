@@ -4,7 +4,7 @@
     treesitter = {
       enable = true;
       nixvimInjections = true;
-      folding = false;
+      folding.enable = false;
       nixGrammars = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash
