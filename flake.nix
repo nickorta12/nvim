@@ -102,6 +102,7 @@
               };
           };
           default = self.packages.${system}.nvim;
+          ty = pkgs.callPackage ./config/plugins/ty.nix { };
         }
       );
       checks = forEachSupportedSystem (
