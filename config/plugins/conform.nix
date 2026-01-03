@@ -3,10 +3,11 @@
   extraPackages = with pkgs; [
     jq
     just
+    markdownlint-cli2
+    prettierd
     shfmt
     xmlstarlet
     yamlfmt
-    markdownlint-cli2
   ];
   plugins.conform-nvim = {
     enable = true;
@@ -17,6 +18,10 @@
           "ruff_format"
           "ruff_fix"
         ];
+        javascript = [ "prettierd" ];
+        javascriptreact = [ "prettierd" ];
+        typescript = [ "prettierd" ];
+        typescripreact = [ "prettierd" ];
         just = [ "just" ];
         json = [ "jq" ];
         markdown = [ "markdownlint-cli2" ];

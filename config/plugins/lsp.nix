@@ -34,6 +34,7 @@ in
         #     inlayHints.callArgumentNames = true;
         #   };
         # };
+        ts_ls.enable = true;
         ty = {
           enable = true;
           package = pkgs.callPackage ./ty.nix { };

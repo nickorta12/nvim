@@ -30,5 +30,8 @@
 
     timeoutlen = 500;
     winborder = "rounded";
+
+    title = true;
+    titlestring = "%{fnamemodify(getcwd(), ':t')}/%{expand('%:.')} — nvim";
   };
 }

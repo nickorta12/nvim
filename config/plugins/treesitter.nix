@@ -10,6 +10,8 @@
         bash
         c
         cpp
+        java
+        javascript
         json
         jsonc
         just
@@ -21,6 +23,8 @@
         regex
         rust
         toml
+        tsx
+        typescript
         xml
         yaml
       ];
