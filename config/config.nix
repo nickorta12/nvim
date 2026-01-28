@@ -32,6 +32,6 @@
     winborder = "rounded";
 
     title = true;
-    titlestring = "%{fnamemodify(getcwd(), ':t')}/%{expand('%:.')} — nvim";
+    titlestring = "%{fnamemodify(getcwd(), ':t')}/%{expand('%:.')} - nvim";
   };
 }
