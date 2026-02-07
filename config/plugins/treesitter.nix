@@ -13,7 +13,6 @@
         java
         javascript
         json
-        jsonc
         just
         kdl
         lua
@@ -34,7 +33,5 @@
         indent.enable = true;
       };
     };
-
-    treesitter-refactor.enable = true;
   };
 }
