@@ -14,13 +14,13 @@ let
     .${system} or (throw "Unsupported system: ${system}");
 
   hashes = {
-    "x86_64-linux" = "sha256-UgNPPsViz+hSMoEj7wgO+o/A4jYUcb14214Hd1xAYuQ=";
+    "x86_64-linux" = "sha256-7Qy5w6DcDD997xl19HZzbpeJpzrb8FSsHXv0NwjpzF8=";
     "aarch64-darwin" = "sha256-/hc7SVvo+WPSFkgFhsubyqb7CTAl0OrSsRx6QyO2zzE=";
   };
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "ty";
-  version = "0.0.16";
+  version = "0.0.17";
 
   src = fetchurl {
     url = "https://github.com/astral-sh/ty/releases/download/${finalAttrs.version}/ty-${suffix}";
