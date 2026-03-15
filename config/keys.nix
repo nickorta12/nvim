@@ -2,6 +2,7 @@
 let
   inherit (keymap)
     nmap
+    xmap
     imap
     nlua
     mkKeyLua
@@ -20,6 +21,33 @@ let
 in
 {
   keymaps = [
+    # nvim-surround keymaps
+    (imap "<C-g>z" "<Plug>(nvim-surround-insert)"
+      "Add a surrounding pair around the cursor (insert mode)"
+    )
+    (imap "<C-g>Z" "<Plug>(nvim-surround-insert-line)"
+      "Add a surrounding pair around the cursor, on new lines (insert mode)"
+    )
+    (nmap "gz" "<Plug>(nvim-surround-normal)" "Add a surrounding pair around a motion (normal mode)")
+    (nmap "gzz" "<Plug>(nvim-surround-normal-cur)"
+      "Add a surrounding pair around the current line (normal mode)"
+    )
+    (nmap "gZ" "<Plug>(nvim-surround-normal-line)"
+      "Add a surrounding pair around a motion, on new lines (normal mode)"
+    )
+    (nmap "gZZ" "<Plug>(nvim-surround-normal-cur-line)"
+      "Add a surrounding pair around the current line, on new lines (normal mode)"
+    )
+    (xmap "Z" "<Plug>(nvim-surround-visual)" "Add a surrounding pair around a visual selection")
+    (xmap "gZ" "<Plug>(nvim-surround-visual-line)"
+      "Add a surrounding pair around a visual selection, on new lines"
+    )
+    (nmap "dz" "<Plug>(nvim-surround-delete)" "Delete a surrounding pair")
+    (nmap "cz" "<Plug>(nvim-surround-change)" "Change a surrounding pair")
+    (nmap "cZ" "<Plug>(nvim-surround-change-line)"
+      "Change a surrounding pair, putting replacements on new lines"
+    )
+
     # Buffer keymaps
     (nmap "<leader>bn" ":bn<cr>" "Next Buffer")
     (nmap "<leader>bp" ":bp<cr>" "Previous Buffer")

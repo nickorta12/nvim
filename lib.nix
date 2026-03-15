@@ -47,6 +47,7 @@ lib: {
         keysToAttrs
         ;
       nmap = mkKey "n";
+      xmap = mkKey "x";
       imap = mkKey "i";
       tmap = mkKey "t";
       nlua = mkKeyLua "n";
