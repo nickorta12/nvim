@@ -15,7 +15,7 @@ let
 
   hashes = {
     "x86_64-linux" = "sha256-LtIYLkxUFmdtMsUb/Pw6BtXO4yHUCvGEEPNJRV+IZj8=";
-    "aarch64-darwin" = "sha256-/hc7SVvo+WPSFkgFhsubyqb7CTAl0OrSsRx6QyO2zzE=";
+    "aarch64-darwin" = "sha256-2sk09QlJZgebdkaAPaJTx36deQPGRsWaXw7cQ6mBrKk=";
   };
 in
 stdenv.mkDerivation (finalAttrs: {
