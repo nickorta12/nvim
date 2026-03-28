@@ -2,7 +2,7 @@
   description = "A nixvim configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:flox/nixpkgs/unstable";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
