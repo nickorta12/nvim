@@ -10,6 +10,7 @@
         bash
         c
         cpp
+        fish
         java
         javascript
         json
