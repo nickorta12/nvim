@@ -2,7 +2,8 @@
 {
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
-      name = "multicursor.nvim";
+      pname = "multicursor.nvim";
+      version = "unstable-2025-02-08";
       src = pkgs.fetchFromGitHub {
         owner = "jake-stewart";
         repo = "multicursor.nvim";
