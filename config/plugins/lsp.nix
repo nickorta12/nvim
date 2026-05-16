@@ -52,6 +52,7 @@ in
           (nlua "K" /* lua */ "vim.lsp.buf.hover()" "Hover")
           (nlua "gS" /* lua */ "vim.lsp.buf.signature_help()" "Show signature help")
 
+          # LSP navigation
           (nlua "gi" /* lua */ "Snacks.picker.lsp_implementations()" "Goto Implementation")
           (nlua "go" /* lua */ "Snacks.picker.lsp_type_definitions()" "Goto Type Definition")
           (nlua "gd" /* lua */ "Snacks.picker.lsp_definitions()" "Goto Definition")
@@ -64,14 +65,11 @@ in
           (nlua "<F2>" /* lua */ "vim.lsp.buf.rename()" "Rename")
           (nlua "<F4>" /* lua */ "vim.lsp.buf.code_action()" "Code action")
 
-          (nlua "<leader>vd" /* lua */ "vim.lsp.buf.definition()" "Go to definition")
-          (nlua "<leader>vD" /* lua */ "vim.lsp.buf.declaration()" "Go to declaration")
-          (nlua "<leader>vi" /* lua */ "vim.lsp.buf.implementation()" "Go to implementation")
-          (nlua "<leader>vo" /* lua */ "vim.lsp.buf.type_definition()" "Go to type definition")
-          (nlua "<leader>vr" /* lua */ "vim.lsp.buf.references()" "Go to references")
-          (nlua "<leader>vs" /* lua */ "vim.lsp.buf.signature_help()" "Show signature help")
-          (nlua "<leader>vc" /* lua */ "vim.lsp.buf.code_action()" "Code action")
-          (nlua "<leader>va" /* lua */ "require('aerial').open()" "Open Aerial")
+          # Code actions
+          (nlua "<leader>ca" /* lua */ "vim.lsp.buf.code_action()" "Code action")
+          (nlua "<leader>cr" /* lua */ "vim.lsp.buf.rename()" "Rename")
+          (nlua "<leader>cs" /* lua */ "vim.lsp.buf.signature_help()" "Show signature help")
+          (nlua "<leader>co" /* lua */ "require('aerial').open()" "Open Aerial")
         ];
     };
 

@@ -74,13 +74,7 @@ in
 
     (nmap "<leader>y" ":Yazi<cr>" "Open File Browser (Yazi)")
 
-    (nlua "<leader>gg" /* lua */ "Snacks.lazygit()" "Open LazyGit")
     (nlua "<c-g>" /* lua */ "Snacks.lazygit()" "Open LazyGit")
-    (nlua "<leader>gl" /* lua */ "Snacks.lazygit.log()" "LazyGit Log")
-    (nlua "<leader>gL" /* lua */ "Snacks.lazygit.log_file()" "LazyGit Log File")
-    (nmap "<leader>gB" ":Git blame<CR>" "Git Blame")
-    (nmap "<leader>gs" ":Git status<CR>" "Git Status")
-    (nmap "<leader>gd" ":Gitsigns diffthis<CR>" "Git Diff")
 
     (nmap "<c-w>s" ":split<cr><c-w>j" "Split window")
     (nmap "<c-w>v" ":vsplit<cr><c-w>l" "Split window vertically")
@@ -143,6 +137,7 @@ in
     (nlua "<leader>fp" /* lua */ "Snacks.picker.projects()" "Projects")
     (nlua "<leader>fr" /* lua */ "Snacks.picker.recent()" "Recent")
     # -- Git
+    (nlua "<leader>gg" /* lua */ "Snacks.lazygit()" "Open LazyGit")
     (nlua "<leader>gb" /* lua */ "Snacks.picker.git_branches({focus='list'})" "Git Branches")
     (nlua "<leader>gl" /* lua */ "Snacks.picker.git_log({focus='list'})" "Git Log")
     (nlua "<leader>gL" /* lua */ "Snacks.picker.git_log_line({focus='list'})" "Git Log Line")
@@ -150,6 +145,19 @@ in
     (nlua "<leader>gS" /* lua */ "Snacks.picker.git_stash({focus='list'})" "Git Stash")
     (nlua "<leader>gd" /* lua */ "Snacks.picker.git_diff({focus='list'})" "Git Diff (Hunks)")
     (nlua "<leader>gf" /* lua */ "Snacks.picker.git_log_file({focus='list'})" "Git Log File")
+    (nmap "<leader>gD" ":DiffviewOpen<cr>" "Open Diffview")
+    (nmap "<leader>gq" ":DiffviewClose<cr>" "Close Diffview")
+    (nmap "<leader>gF" ":DiffviewFileHistory %<cr>" "Git File History")
+    (nmap "<leader>gH" ":DiffviewFileHistory<cr>" "Git Repo History")
+    (nlua "]h" /* lua */ "require('gitsigns').nav_hunk('next')" "Next Git Hunk")
+    (nlua "[h" /* lua */ "require('gitsigns').nav_hunk('prev')" "Previous Git Hunk")
+    (nlua "<leader>ghs" /* lua */ "require('gitsigns').stage_hunk()" "Stage Git Hunk")
+    (nlua "<leader>ghr" /* lua */ "require('gitsigns').reset_hunk()" "Reset Git Hunk")
+    (nlua "<leader>ghp" /* lua */ "require('gitsigns').preview_hunk()" "Preview Git Hunk")
+    (nlua "<leader>ghb" /* lua */ "require('gitsigns').blame_line({ full = true })" "Blame Git Line")
+    (nlua "<leader>ghd" /* lua */ "require('gitsigns').diffthis()" "Diff Git File")
+    (nlua "<leader>ghS" /* lua */ "require('gitsigns').stage_buffer()" "Stage Git Buffer")
+    (nlua "<leader>ghR" /* lua */ "require('gitsigns').reset_buffer()" "Reset Git Buffer")
     # (nlua "<leader>sg" /* lua */ "Snacks.picker.grep()" "Grep")
     (nlua "<leader>sg" /* lua */ "require('fff').live_grep()" "Grep")
     # -- Search
@@ -205,6 +213,10 @@ in
             group = "Git";
           }
           {
+            __unkeyed-1 = "<leader>gh";
+            group = "Git Hunks";
+          }
+          {
             __unkeyed-1 = "<leader>w";
             group = "Window";
           }
@@ -221,8 +233,8 @@ in
             group = "Diagnostics";
           }
           {
-            __unkeyed-1 = "<leader>v";
-            group = "LSP";
+            __unkeyed-1 = "<leader>c";
+            group = "Code";
           }
           {
             __unkeyed-1 = "<leader>u";

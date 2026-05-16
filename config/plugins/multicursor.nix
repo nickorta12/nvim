@@ -79,7 +79,7 @@
         end)
 
         -- bring back cursors if you accidentally clear them
-        set("n", "<leader>gv", mc.restoreCursors, { desc = "Restore cursors"})
+        -- set("n", "<leader>gv", mc.restoreCursors, { desc = "Restore cursors"})
 
         -- Align cursor columns.
         set("n", "<leader>a", mc.alignCursors, { desc = "Align cursors"})
