@@ -1,5 +1,13 @@
 { pkgs, ... }:
 {
+  extraPackages = [ pkgs.tree-sitter ];
+  extraConfigLua = ''
+    vim.treesitter.language.add("jsonc", {
+      path = "${pkgs.vimPlugins.nvim-treesitter.builtGrammars.json}/parser",
+      symbol_name = "json",
+    })
+    vim.treesitter.language.register("json", "jsonc")
+  '';
   plugins = {
     treesitter = {
       enable = true;
@@ -14,6 +22,7 @@
         java
         javascript
         json
+        json5
         just
         kdl
         lua

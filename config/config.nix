@@ -30,6 +30,7 @@
 
     timeoutlen = 500;
     winborder = "rounded";
+    sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions";
 
     title = true;
     titlestring = "%{fnamemodify(getcwd(), ':t')}/%{expand('%:.')} - nvim";

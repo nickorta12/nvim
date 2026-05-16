@@ -72,8 +72,6 @@ in
         ];
     };
 
-    lsp-status.enable = true;
-
     rustaceanvim = {
       enable = true;
       settings.server.default_settings.rust-analyzer = {
@@ -149,5 +147,26 @@ in
       enable = true;
     };
   };
+  extraConfigLua = ''
+    do
+      local ok, lspconfig_util = pcall(require, "lspconfig.util")
+      if ok and lspconfig_util.available_servers then
+        local original_available_servers = lspconfig_util.available_servers
+        lspconfig_util.available_servers = function(...)
+          local servers = original_available_servers(...)
+          local seen = {}
+          for _, server in ipairs(servers) do
+            seen[server] = true
+          end
+          for _, server in ipairs({ "jsonls", "lua_ls" }) do
+            if not seen[server] then
+              table.insert(servers, server)
+            end
+          end
+          return servers
+        end
+      end
+    end
+  '';
   dependencies.rust-analyzer.enable = false;
 }
