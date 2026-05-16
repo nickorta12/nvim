@@ -35,7 +35,6 @@ in
         jsonls.enable = true;
         lua_ls.enable = true;
       };
-      capabilities = "capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)";
       keymaps.extra =
         let
           rightbar = toLuaObject {
@@ -128,7 +127,7 @@ in
           ];
         };
         completion.trigger.show_in_snippet = false;
-        signature.enabled = true;
+        signature.enabled = false;
       };
     };
 

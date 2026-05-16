@@ -5,7 +5,6 @@
     ./git.nix
     ./lsp.nix
     ./minimal.nix
-    ./multicursor.nix
     ./treesitter.nix
   ];
 
@@ -53,7 +52,37 @@
     #   };
     # };
     # Better status line
-    lualine.enable = true;
+    lualine = {
+      enable = true;
+      settings.sections.lualine_x = [
+        {
+          __unkeyed-1 = lib.nixvim.mkRaw ''
+            function()
+              if next(vim.lsp.get_clients({ bufnr = 0 })) == nil then
+                return ""
+              end
+
+              local parts = {}
+              local current_function = vim.b.lsp_current_function
+              if current_function and current_function ~= "" then
+                table.insert(parts, "(" .. current_function .. ")")
+              end
+
+              local progress = require("lsp-status").status_progress()
+              if progress and progress ~= "" then
+                table.insert(parts, progress)
+              end
+
+              return table.concat(parts, " ")
+            end
+          '';
+        }
+        "diagnostics"
+        "encoding"
+        "fileformat"
+        "filetype"
+      ];
+    };
     # Indent guides
     indent-blankline.enable = true;
     # Better file finder
@@ -123,6 +152,7 @@
   };
 
   dependencies = {
+    # Explicitly disabled to reduce closure size. Everywhere I use this has git already
     git.enable = false;
     yazi.package = pkgs.yazi.override { optionalDeps = [ ]; };
   };

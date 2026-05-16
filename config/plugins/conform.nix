@@ -15,13 +15,13 @@
       formatters_by_ft = {
         nix = [ "nixfmt" ];
         python = [
-          "ruff_format"
           "ruff_fix"
+          "ruff_format"
         ];
         javascript = [ "prettierd" ];
         javascriptreact = [ "prettierd" ];
         typescript = [ "prettierd" ];
-        typescripreact = [ "prettierd" ];
+        typescriptreact = [ "prettierd" ];
         just = [ "just" ];
         json = [ "jq" ];
         markdown = [ "markdownlint-cli2" ];

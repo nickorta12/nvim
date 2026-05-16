@@ -120,7 +120,7 @@ in
     # Snacks pickers
     # Top Pickers & Explorer
     # (nlua "<leader><space>" /* lua */ "Snacks.picker.smart()" "Smart Find Files")
-    (nlua "<leader><space>" /* lua */ "require('fff').live_grep()" "Smart Find Files")
+    (nlua "<leader><space>" /* lua */ "require('fff').live_grep()" "Grep")
     (nlua "<leader>," /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
     (nlua "<leader>/" /* lua */ "Snacks.picker.grep()" "Grep")
     (nlua "<leader>:" /* lua */ "Snacks.picker.command_history()" "Command History")
