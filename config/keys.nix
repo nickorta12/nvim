@@ -119,7 +119,8 @@ in
 
     (nmap "<leader>;" "mmA;<esc>`m" "Add semicolon")
     (imap "<c-g>;" "<esc>mmA;<esc>`ma" "Add semicolon")
-    (nmap "<leader>," "mmA,<esc>`m" "Add comma")
+    # Used by buffers which i like better
+    # (nmap "<leader>," "mmA,<esc>`m" "Add comma")
     (imap "<C-g>," "<esc>mmA,<esc>`ma" "Add comma")
 
     # Snacks pickers
@@ -149,14 +150,12 @@ in
     (nlua "<leader>gS" /* lua */ "Snacks.picker.git_stash({focus='list'})" "Git Stash")
     (nlua "<leader>gd" /* lua */ "Snacks.picker.git_diff({focus='list'})" "Git Diff (Hunks)")
     (nlua "<leader>gf" /* lua */ "Snacks.picker.git_log_file({focus='list'})" "Git Log File")
-    # -- Grep
-    (nlua "<leader>sb" /* lua */ "Snacks.picker.lines()" "Buffer Lines")
-    (nlua "<leader>sB" /* lua */ "Snacks.picker.grep_buffers()" "Grep Open Buffers")
     # (nlua "<leader>sg" /* lua */ "Snacks.picker.grep()" "Grep")
     (nlua "<leader>sg" /* lua */ "require('fff').live_grep()" "Grep")
     # -- Search
     (nlua "<leader>sa" /* lua */ "Snacks.picker.autocmds()" "Autocmds")
     (nlua "<leader>sb" /* lua */ "Snacks.picker.lines()" "Buffer Lines")
+    (nlua "<leader>sB" /* lua */ "Snacks.picker.grep_buffers()" "Grep Open Buffers")
     (nlua "<leader>sc" /* lua */ "Snacks.picker.command_history()" "Command History")
     (nlua "<leader>sC" /* lua */ "Snacks.picker.commands()" "Commands")
     (nlua "<leader>sd" /* lua */ "Snacks.picker.diagnostics()" "Diagnostics")
