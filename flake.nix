@@ -102,7 +102,7 @@
               };
           };
           default = self.packages.${system}.nvim;
-          ty = pkgs.callPackage ./config/plugins/ty.nix { };
+          pyrefly = pkgs.callPackage ./config/plugins/pyrefly.nix { };
         }
       );
       checks = forEachSupportedSystem (

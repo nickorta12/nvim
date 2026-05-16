@@ -44,14 +44,14 @@
       };
     };
     # Like harpoon to save files
-    arrow = {
-      enable = true;
-      settings = {
-        show_icons = true;
-        leader_key = ";";
-        buffer_leader_key = "m";
-      };
-    };
+    # arrow = {
+    #   enable = true;
+    #   settings = {
+    #     show_icons = true;
+    #     leader_key = ";";
+    #     buffer_leader_key = "m";
+    #   };
+    # };
     # Better status line
     lualine.enable = true;
     # Indent guides
@@ -89,7 +89,11 @@
 
     web-devicons.enable = true;
 
+    # Faster file finding
     fff.enable = true;
+
+    # Session management
+    auto-session.enable = true;
 
     snacks = {
       enable = true;

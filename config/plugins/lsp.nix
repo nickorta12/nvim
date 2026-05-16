@@ -26,19 +26,11 @@ in
           settings.formatting.command = [ "nixfmt" ];
           onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
         };
-        # basedpyright = {
-        #   enable = true;
-        #   # package = basedpyright;
-        #   settings.basedpyright = {
-        #     analysis.typeCheckingMode = "basic";
-        #     inlayHints.callArgumentNames = true;
-        #   };
-        # };
-        ts_ls.enable = true;
-        ty = {
+        pyrefly = {
           enable = true;
-          package = pkgs.callPackage ./ty.nix { };
+          package = pkgs.callPackage ./pyrefly.nix { };
         };
+        ts_ls.enable = true;
         ruff.enable = true;
         jsonls.enable = true;
         lua_ls.enable = true;
@@ -79,6 +71,7 @@ in
           (nlua "<leader>vr" /* lua */ "vim.lsp.buf.references()" "Go to references")
           (nlua "<leader>vs" /* lua */ "vim.lsp.buf.signature_help()" "Show signature help")
           (nlua "<leader>vc" /* lua */ "vim.lsp.buf.code_action()" "Code action")
+          (nlua "<leader>va" /* lua */ "require('aerial').open()" "Open Aerial")
         ];
     };
 
@@ -142,7 +135,18 @@ in
     };
 
     trouble.enable = true;
+    tiny-inline-diagnostic.enable = true;
     nvim-lightbulb.enable = true;
+
+    aerial = {
+      enable = true;
+      settings.on_attach = lib.nixvim.mkRaw ''
+        function(bufnr)
+          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr, desc = "Previous symbol" })
+          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr, desc = "Next symbol" })
+        end
+      '';
+    };
 
     neoconf = {
       enable = true;
