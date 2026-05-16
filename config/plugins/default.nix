@@ -89,6 +89,8 @@
 
     web-devicons.enable = true;
 
+    fff.enable = true;
+
     snacks = {
       enable = true;
       settings = {

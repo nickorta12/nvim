@@ -124,7 +124,8 @@ in
 
     # Snacks pickers
     # Top Pickers & Explorer
-    (nlua "<leader><space>" /* lua */ "Snacks.picker.smart()" "Smart Find Files")
+    # (nlua "<leader><space>" /* lua */ "Snacks.picker.smart()" "Smart Find Files")
+    (nlua "<leader><space>" /* lua */ "require('fff').live_grep()" "Smart Find Files")
     (nlua "<leader>," /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
     (nlua "<leader>/" /* lua */ "Snacks.picker.grep()" "Grep")
     (nlua "<leader>:" /* lua */ "Snacks.picker.command_history()" "Command History")
@@ -133,7 +134,8 @@ in
     (nlua "\\" smartExplorer "File Explorer")
     # -- Find
     (nlua "<leader>fb" /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
-    (nlua "<leader>ff" /* lua */ "Snacks.picker.files()" "Find Files")
+    # (nlua "<leader>ff" /* lua */ "Snacks.picker.files()" "Find Files")
+    (nlua "<leader>ff" /* lua */ "require('fff').find_files()" "Find Files")
     (nlua "<leader>fg" /* lua */ "Snacks.picker.git_files()" "Find Git Files")
     (nlua "<leader>fp" /* lua */ "Snacks.picker.projects()" "Projects")
     (nlua "<leader>fr" /* lua */ "Snacks.picker.recent()" "Recent")
@@ -148,7 +150,8 @@ in
     # -- Grep
     (nlua "<leader>sb" /* lua */ "Snacks.picker.lines()" "Buffer Lines")
     (nlua "<leader>sB" /* lua */ "Snacks.picker.grep_buffers()" "Grep Open Buffers")
-    (nlua "<leader>sg" /* lua */ "Snacks.picker.grep()" "Grep")
+    # (nlua "<leader>sg" /* lua */ "Snacks.picker.grep()" "Grep")
+    (nlua "<leader>sg" /* lua */ "require('fff').live_grep()" "Grep")
     # -- Search
     (nlua "<leader>sa" /* lua */ "Snacks.picker.autocmds()" "Autocmds")
     (nlua "<leader>sb" /* lua */ "Snacks.picker.lines()" "Buffer Lines")
