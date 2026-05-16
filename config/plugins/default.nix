@@ -64,14 +64,16 @@
       };
     };
     # Sidebar
-    # neo-tree = {
-    #   enable = true;
-    #   closeIfLastWindow = false;
-    #   filesystem = {
-    #     useLibuvFileWatcher = true;
-    #     followCurrentFile.enabled = true;
-    #   };
-    # };
+    neo-tree = {
+      enable = true;
+      settings = {
+        close_if_last_window = false;
+        filesystem = {
+          use_libuv_file_watcher = true;
+          follow_current_file.enabled = true;
+        };
+      };
+    };
 
     # Better vim motions
     flash = {
@@ -107,7 +109,7 @@
           enabled = true;
           db.sqlite3_path = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
         };
-        explorer.enabled = true;
+        explorer.enabled = false;
       };
       luaConfig.post = ''
         Snacks.toggle.option("wrap", {name = "Wrap"}):map("<leader>uw")

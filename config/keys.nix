@@ -9,15 +9,15 @@ let
     ;
 
   # https://github.com/folke/snacks.nvim/issues/1628#issuecomment-2748889194
-  smartExplorer = /* lua */ ''
-    if Snacks.picker.get({ source = "explorer" })[1] == nil then
-      Snacks.picker.explorer()
-    elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == true then
-      Snacks.picker.explorer()
-    elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == false then
-      Snacks.picker.get({ source = "explorer" })[1]:focus()
-    end
-  '';
+  # smartExplorer = /* lua */ ''
+  #   if Snacks.picker.get({ source = "explorer" })[1] == nil then
+  #     Snacks.picker.explorer()
+  #   elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == true then
+  #     Snacks.picker.explorer()
+  #   elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == false then
+  #     Snacks.picker.get({ source = "explorer" })[1]:focus()
+  #   end
+  # '';
 in
 {
   keymaps = [
@@ -130,8 +130,10 @@ in
     (nlua "<leader>/" /* lua */ "Snacks.picker.grep()" "Grep")
     (nlua "<leader>:" /* lua */ "Snacks.picker.command_history()" "Command History")
     (nlua "<leader>n" /* lua */ "Snacks.picker.notifications()" "Notification History")
-    (nlua "<leader>e" smartExplorer "File Explorer")
-    (nlua "\\" smartExplorer "File Explorer")
+    # (nlua "<leader>e" smartExplorer "File Explorer")
+    # (nlua "\\" smartExplorer "File Explorer")
+    (nmap "<leader>e" ":Neotree<CR>" "File Explorer")
+    (nmap "\\" ":Neotree toggle<CR>" "File Explorer")
     # -- Find
     (nlua "<leader>fb" /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
     # (nlua "<leader>ff" /* lua */ "Snacks.picker.files()" "Find Files")
