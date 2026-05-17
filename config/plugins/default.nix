@@ -79,6 +79,11 @@
           use_libuv_file_watcher = true;
           follow_current_file.enabled = true;
         };
+        window.mappings = {
+          "<cr>" = "open_with_window_picker";
+          "l" = "open";
+          "h" = "close_node";
+        };
       };
     };
 
@@ -128,6 +133,13 @@
       '';
     };
   };
+
+  extraPlugins = [ pkgs.vimPlugins.nvim-window-picker ];
+  extraConfigLua = ''
+    require("window-picker").setup({
+      hint = "floating-big-letter"
+    })
+  '';
 
   dependencies = {
     # Explicitly disabled to reduce closure size. Everywhere I use this has git already
