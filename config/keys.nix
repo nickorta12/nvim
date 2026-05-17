@@ -76,26 +76,10 @@ in
 
     (nlua "<c-g>" /* lua */ "Snacks.lazygit()" "Open LazyGit")
 
-    (nmap "<c-w>s" ":split<cr><c-w>j" "Split window")
-    (nmap "<c-w>v" ":vsplit<cr><c-w>l" "Split window vertically")
-    (nmap "<leader>ws" ":split<cr><c-w>j" "Split window")
-    (nmap "<leader>wv" ":vsplit<cr><c-w>l" "Split window vertically")
-
     (nmap "<c-h>" "<c-w>h" "Go to Left Window")
     (nmap "<c-j>" "<c-w>j" "Go to Lower Window")
     (nmap "<c-k>" "<c-w>k" "Go to Upper Window")
     (nmap "<c-l>" "<c-w>l" "Go to Right Window")
-
-    (nmap "<leader>wk" "<c-w>k" "Window Up")
-    (nmap "<leader>wj" "<c-w>j" "Window Down")
-    (nmap "<leader>wh" "<c-w>h" "Window Left")
-    (nmap "<leader>wl" "<c-w>l" "Window Right")
-    (nmap "<leader>wp" "<c-w>p" "Window Previous")
-    (nmap "<leader>ww" "<c-w>w" "Window Down/Right")
-    (nmap "<leader>wW" "<c-w>W" "Window Up/Left")
-    (nmap "<leader>wt" "<c-w>t" "Window Top-Left")
-    (nmap "<leader>wb" "<c-w>b" "Window Bottom-Right")
-    (nmap "<leader>wq" "<c-w>q" "Window Delete")
 
     (nmap "<leader>xx" ":Trouble diagnostics toggle<cr>" "Diagnostics")
     (nmap "<leader>xX" ":Trouble diagnostics toggle filter.buf=0<cr>" "Buffer Diagnostics")
@@ -215,10 +199,6 @@ in
           {
             __unkeyed-1 = "<leader>gh";
             group = "Git Hunks";
-          }
-          {
-            __unkeyed-1 = "<leader>w";
-            group = "Window";
           }
           {
             __unkeyed-1 = "<leader>t";

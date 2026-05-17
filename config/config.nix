@@ -7,6 +7,8 @@
     undofile = true;
     number = true;
     relativenumber = true;
+    splitbelow = true;
+    splitright = true;
 
     expandtab = true;
     smarttab = true;
@@ -28,6 +30,7 @@
     softtabstop = 4;
     shiftwidth = 4;
 
+    updatetime = 250;
     timeoutlen = 500;
     winborder = "rounded";
     sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions";
