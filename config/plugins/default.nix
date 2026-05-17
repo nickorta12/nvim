@@ -103,15 +103,6 @@
 
     web-devicons.enable = true;
 
-    # Faster file finding
-    fff = {
-      enable = true;
-      settings = {
-        prompt = "";
-        prompt_vim_mode = true;
-      };
-    };
-
     # Session management
     auto-session.enable = true;
 

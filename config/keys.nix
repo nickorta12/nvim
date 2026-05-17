@@ -103,8 +103,7 @@ in
 
     # Snacks pickers
     # Top Pickers & Explorer
-    # (nlua "<leader><space>" /* lua */ "Snacks.picker.smart()" "Smart Find Files")
-    (nlua "<leader><space>" /* lua */ "require('fff').live_grep()" "Grep")
+    (nlua "<leader><space>" /* lua */ "Snacks.picker.smart()" "Smart Find Files")
     (nlua "<leader>," /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
     (nlua "<leader>/" /* lua */ "Snacks.picker.grep()" "Grep")
     (nlua "<leader>:" /* lua */ "Snacks.picker.command_history()" "Command History")
@@ -115,8 +114,7 @@ in
     (nmap "\\" ":Neotree toggle<CR>" "File Explorer")
     # -- Find
     (nlua "<leader>fb" /* lua */ "Snacks.picker.buffers({focus='list'})" "Buffers")
-    # (nlua "<leader>ff" /* lua */ "Snacks.picker.files()" "Find Files")
-    (nlua "<leader>ff" /* lua */ "require('fff').find_files()" "Find Files")
+    (nlua "<leader>ff" /* lua */ "Snacks.picker.files()" "Find Files")
     (nlua "<leader>fg" /* lua */ "Snacks.picker.git_files()" "Find Git Files")
     (nlua "<leader>fp" /* lua */ "Snacks.picker.projects()" "Projects")
     (nlua "<leader>fr" /* lua */ "Snacks.picker.recent()" "Recent")
@@ -142,8 +140,7 @@ in
     (nlua "<leader>ghd" /* lua */ "require('gitsigns').diffthis()" "Diff Git File")
     (nlua "<leader>ghS" /* lua */ "require('gitsigns').stage_buffer()" "Stage Git Buffer")
     (nlua "<leader>ghR" /* lua */ "require('gitsigns').reset_buffer()" "Reset Git Buffer")
-    # (nlua "<leader>sg" /* lua */ "Snacks.picker.grep()" "Grep")
-    (nlua "<leader>sg" /* lua */ "require('fff').live_grep()" "Grep")
+    (nlua "<leader>sg" /* lua */ "Snacks.picker.grep()" "Grep")
     # -- Search
     (nlua "<leader>sa" /* lua */ "Snacks.picker.autocmds()" "Autocmds")
     (nlua "<leader>sb" /* lua */ "Snacks.picker.lines()" "Buffer Lines")
