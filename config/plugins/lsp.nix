@@ -124,7 +124,7 @@ in
             "fallback"
           ];
         };
-        completion.trigger.show_in_snippet = false;
+        completion.trigger.show_in_snippet = true;
         signature.enabled = false;
       };
     };
