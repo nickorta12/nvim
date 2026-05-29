@@ -15,15 +15,15 @@ let
     .${system} or (throw "Unsupported system: ${system}");
 
   hashes = {
-    "x86_64-linux" = "sha256-izUxi6c3emIf+dnvd6RDtq088GW+VmyE9a6cgxjfVFk=";
-    "aarch64-linux" = "sha256-D0oHW1EMVgifZyxyg1KDmGVv0KVBENaDaRnONNvxXAs=";
-    "x86_64-darwin" = "sha256-oVLHp3WqMIjnr1JXMwujfX2FM3oOhYI7TcLbVWt8Oc8=";
-    "aarch64-darwin" = "sha256-88InckVnewEoCZ9Jca4RycSk2aOarXBETC95qdZLaJM=";
+    "x86_64-linux" = "sha256-Uelw+aHnruiwqoRJB2Q3QyRtzRtAkXC862MMVf+sZdo=";
+    "aarch64-linux" = "sha256-AZJlZpA0SWRXcdSn6gEiG/px7fDeBml9v4m6OQYwcWc=";
+    "x86_64-darwin" = "sha256-MIED38TUny2wpqzhIGtczvucRns8YcMIV/UXFo66Mjk=";
+    "aarch64-darwin" = "sha256-RReazIJyW4POwD78U6fZewmXkR0jKeCxX4yMIE1iSNw=";
   };
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "pyrefly";
-  version = "1.0.0";
+  version = "1.1.0-dev.1";
 
   src = fetchurl {
     url = "https://github.com/facebook/pyrefly/releases/download/${finalAttrs.version}/pyrefly-${suffix}.tar.gz";
