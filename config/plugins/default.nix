@@ -74,7 +74,7 @@
     neo-tree = {
       enable = true;
       settings = {
-        close_if_last_window = false;
+        close_if_last_window = true;
         filesystem = {
           use_libuv_file_watcher = true;
           follow_current_file.enabled = true;
@@ -104,7 +104,17 @@
     web-devicons.enable = true;
 
     # Session management
-    auto-session.enable = true;
+    auto-session = {
+      enable = true;
+      settings = {
+        pre_save_cmds = [
+          "silent! Neotree close"
+        ];
+        post_restore_cmds = [
+          "silent! Neotree close"
+        ];
+      };
+    };
 
     snacks = {
       enable = true;
