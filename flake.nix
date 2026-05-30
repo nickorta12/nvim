@@ -57,6 +57,7 @@
               nixvimLib
               nixvim'
               nixvimModule
+              nlib
               ;
           }
         );
@@ -108,11 +109,24 @@
       checks = forEachSupportedSystem (
         {
           nixvimLib,
-          nixvimModule,
+          pkgs,
+          nlib,
           ...
         }:
         {
-          default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+          default = nixvimLib.check.mkTestDerivationFromNixvimModule {
+            inherit pkgs;
+            module =
+              { lib, ... }:
+              {
+                imports = [ ./config ];
+                dependencies.git.enable = lib.mkForce true;
+              };
+            extraSpecialArgs = {
+              inherit (nlib) keymap;
+            };
+          };
+
         }
       );
     };
