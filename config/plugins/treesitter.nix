@@ -16,6 +16,7 @@
       nixGrammars = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash
+        pkgs.tree-sitter-grammars.tree-sitter-blueprint
         c
         cpp
         fish

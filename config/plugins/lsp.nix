@@ -21,6 +21,7 @@ in
         #   };
         #   onAttach.function = "client.server_capabilities.semanticTokensProvider = nil";
         # };
+        blueprint_ls.enable = true;
         nixd = {
           enable = true;
           settings.formatting.command = [ "nixfmt" ];
