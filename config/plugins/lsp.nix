@@ -33,7 +33,23 @@ in
         };
         ts_ls.enable = true;
         ruff.enable = true;
-        jsonls.enable = true;
+        jsonls = {
+          enable = true;
+          settings.json = {
+            schemas = lib.nixvim.mkRaw ''
+              {
+                {
+                  fileMatch = {
+                    vim.fn.stdpath("config") .. "/neoconf.json",
+                    ".neoconf.json",
+                  },
+                  schema = require("neoconf.schema").get():get(),
+                },
+              }
+            '';
+            validate.enable = true;
+          };
+        };
         lua_ls.enable = true;
       };
       keymaps.extra =
@@ -75,14 +91,30 @@ in
 
     rustaceanvim = {
       enable = true;
-      settings.server.default_settings.rust-analyzer = {
-        files.excludeDirs = [
-          ".git"
-          ".cargo"
-          "target"
-          ".direnv"
-        ];
-
+      settings.server = {
+        default_settings.rust-analyzer = {
+          files.excludeDirs = [
+            ".git"
+            ".cargo"
+            "target"
+            ".direnv"
+          ];
+        };
+        settings = lib.nixvim.mkRaw ''
+          function(project_root, default_settings)
+            local settings = require("rustaceanvim.config.server").load_rust_analyzer_settings(
+              project_root,
+              { default_settings = default_settings }
+            )
+            local project_settings = require("neoconf").get(
+              "lspconfig.rust_analyzer",
+              {},
+              { file = project_root }
+            )
+            project_settings = require("neoconf.settings").expand(project_settings)
+            return vim.tbl_deep_extend("force", settings, project_settings)
+          end
+        '';
       };
     };
     lsp-signature = {
