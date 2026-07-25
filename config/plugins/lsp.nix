@@ -125,6 +125,7 @@ in
         toggle_key = "<C-s>";
       };
     };
+    fidget.enable = true;
 
     luasnip.enable = true;
     blink-cmp = {
@@ -157,7 +158,11 @@ in
             "fallback"
           ];
         };
-        completion.trigger.show_in_snippet = true;
+        completion.trigger = {
+          prefetch_on_insert = true;
+          show_in_snippet = true;
+        };
+        sources.providers.lsp.async = true;
         signature.enabled = false;
       };
     };
