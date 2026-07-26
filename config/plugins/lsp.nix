@@ -95,10 +95,13 @@ in
       enable = true;
       settings.server = {
         on_attach = lib.nixvim.mkRaw ''
-          function(_, bufnr)
+          function(client, bufnr)
             vim.keymap.set("n", "K", function()
               vim.cmd.RustLsp({ "hover", "actions" })
             end, { buffer = bufnr, desc = "Rust hover actions" })
+            vim.keymap.set("n", "<leader>cc", function()
+              Snacks.terminal("cargo run", { cwd = client.config.root_dir })
+            end, { buffer = bufnr, desc = "Cargo run" })
           end
         '';
         default_settings.rust-analyzer = {
