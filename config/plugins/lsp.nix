@@ -94,6 +94,13 @@ in
     rustaceanvim = {
       enable = true;
       settings.server = {
+        on_attach = lib.nixvim.mkRaw ''
+          function(_, bufnr)
+            vim.keymap.set("n", "K", function()
+              vim.cmd.RustLsp({ "hover", "actions" })
+            end, { buffer = bufnr, desc = "Rust hover actions" })
+          end
+        '';
         default_settings.rust-analyzer = {
           files.excludeDirs = [
             ".git"

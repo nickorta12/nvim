@@ -248,9 +248,12 @@
             vim.keymap.set("n", "<S-Tab>", function()
               open_url.goto_link(-1)
             end, options)
-            vim.keymap.set("n", "<CR>", function()
-              open_url.open_under_cursor(false)
-            end, options)
+            local enter_mapping = vim.fn.maparg("<CR>", "n", false, true)
+            if enter_mapping.buffer ~= 1 then
+              vim.keymap.set("n", "<CR>", function()
+                open_url.open_under_cursor(false)
+              end, options)
+            end
           end
         end
       '';
