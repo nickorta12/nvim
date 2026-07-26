@@ -89,6 +89,8 @@ in
         ];
     };
 
+    colorful-menu.enable = true;
+
     rustaceanvim = {
       enable = true;
       settings.server = {
@@ -138,14 +140,32 @@ in
               "accept"
             ];
           };
-          completion.menu = {
-            auto_show = true;
-            draw.columns = {
-              __unkeyed-1 = {
-                __unkeyed-1 = "kind_icon";
-              };
-              __unkeyed-2 = {
-                __unkeyed-1 = "label";
+          completion = {
+            ghost_text.enabled = true;
+            menu = {
+              auto_show = true;
+              draw = {
+                columns = {
+                  __unkeyed-1 = {
+                    __unkeyed-1 = "kind_icon";
+                  };
+                  __unkeyed-2 = {
+                    __unkeyed-1 = "label";
+                    gap = 1;
+                  };
+                };
+                components.label = {
+                  text = lib.nixvim.mkRaw ''
+                    function(ctx)
+                      return require("colorful-menu").blink_components_text(ctx)
+                    end
+                  '';
+                  highlight = lib.nixvim.mkRaw ''
+                    function(ctx)
+                      return require("colorful-menu").blink_components_highlight(ctx)
+                    end
+                  '';
+                };
               };
             };
           };
