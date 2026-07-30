@@ -93,40 +93,50 @@ in
 
     rustaceanvim = {
       enable = true;
-      settings.server = {
-        on_attach = lib.nixvim.mkRaw ''
-          function(client, bufnr)
-            vim.keymap.set("n", "K", function()
-              vim.cmd.RustLsp({ "hover", "actions" })
-            end, { buffer = bufnr, desc = "Rust hover actions" })
-            vim.keymap.set("n", "<leader>cc", function()
-              Snacks.terminal("cargo run", { cwd = client.config.root_dir })
-            end, { buffer = bufnr, desc = "Cargo run" })
-          end
-        '';
-        default_settings.rust-analyzer = {
-          files.excludeDirs = [
-            ".git"
-            ".cargo"
-            "target"
-            ".direnv"
-          ];
+      settings = {
+        tools.enable_clippy = false;
+        server = {
+          on_attach = lib.nixvim.mkRaw ''
+            function(client, bufnr)
+              vim.keymap.set("n", "K", function()
+                vim.cmd.RustLsp({ "hover", "actions" })
+              end, { buffer = bufnr, desc = "Rust hover actions" })
+              vim.keymap.set("n", "<leader>cc", function()
+                Snacks.terminal("cargo run", { cwd = client.config.root_dir })
+              end, { buffer = bufnr, desc = "Cargo run" })
+              vim.keymap.set("n", "<leader>cC", function()
+                vim.cmd.RustLsp({ "flyCheck", "run" })
+              end, { buffer = bufnr, desc = "Run Clippy diagnostics" })
+            end
+          '';
+          default_settings.rust-analyzer = {
+            check = {
+              command = "clippy";
+            };
+            checkOnSave = false;
+            files.excludeDirs = [
+              ".git"
+              ".cargo"
+              "target"
+              ".direnv"
+            ];
+          };
+          settings = lib.nixvim.mkRaw ''
+            function(project_root, default_settings)
+              local settings = require("rustaceanvim.config.server").load_rust_analyzer_settings(
+                project_root,
+                { default_settings = default_settings }
+              )
+              local project_settings = require("neoconf").get(
+                "lspconfig.rust_analyzer",
+                {},
+                { file = project_root }
+              )
+              project_settings = require("neoconf.settings").expand(project_settings)
+              return vim.tbl_deep_extend("force", settings, project_settings)
+            end
+          '';
         };
-        settings = lib.nixvim.mkRaw ''
-          function(project_root, default_settings)
-            local settings = require("rustaceanvim.config.server").load_rust_analyzer_settings(
-              project_root,
-              { default_settings = default_settings }
-            )
-            local project_settings = require("neoconf").get(
-              "lspconfig.rust_analyzer",
-              {},
-              { file = project_root }
-            )
-            project_settings = require("neoconf.settings").expand(project_settings)
-            return vim.tbl_deep_extend("force", settings, project_settings)
-          end
-        '';
       };
     };
     lsp-signature = {
