@@ -174,18 +174,6 @@ in
                     gap = 1;
                   };
                 };
-                components.label = {
-                  text = lib.nixvim.mkRaw ''
-                    function(ctx)
-                      return require("colorful-menu").blink_components_text(ctx)
-                    end
-                  '';
-                  highlight = lib.nixvim.mkRaw ''
-                    function(ctx)
-                      return require("colorful-menu").blink_components_highlight(ctx)
-                    end
-                  '';
-                };
               };
             };
           };
@@ -197,6 +185,18 @@ in
             "accept"
             "fallback"
           ];
+        };
+        completion.menu.draw.components.label = {
+          text = lib.nixvim.mkRaw ''
+            function(ctx)
+              return require("colorful-menu").blink_components_text(ctx)
+            end
+          '';
+          highlight = lib.nixvim.mkRaw ''
+            function(ctx)
+              return require("colorful-menu").blink_components_highlight(ctx)
+            end
+          '';
         };
         completion.trigger = {
           prefetch_on_insert = true;
