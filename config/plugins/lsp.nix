@@ -31,7 +31,28 @@ in
           enable = true;
           package = pkgs.callPackage ./pyrefly.nix { };
         };
-        ts_ls.enable = true;
+        ts_ls = {
+          enable = true;
+          rootMarkers = [
+            "tsconfig.json"
+            "jsconfig.json"
+            "package.json"
+            "metadata.json"
+            ".git"
+          ];
+          extraOptions.init_options = {
+            hostInfo = "neovim";
+            preferences = {
+              includeCompletionsForImportStatements = true;
+              includeCompletionsForModuleExports = true;
+              includeCompletionsWithSnippetText = true;
+            };
+          };
+          settings.implicitProjectConfiguration = {
+            checkJs = true;
+            strictNullChecks = true;
+          };
+        };
         ruff.enable = true;
         jsonls = {
           enable = true;
