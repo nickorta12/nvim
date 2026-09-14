@@ -44,8 +44,12 @@
       "ftplugin/lua.lua" = indent 2;
       "ftplugin/nix.lua" = indent 2;
       "ftplugin/yaml.lua" = indent 2;
+      "ftplugin/xml.lua" = indent 2;
       "ftplugin/markdown.lua" = {
         opts.textwidth = 100;
+      };
+      "ftplugin/python.lua" = {
+        opts.textwidth = 88;
       };
       "ftplugin/alpha" = {
         localOpts.buflisted = false;
