@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   imports = [
+    ./appearance.nix
     ./config.nix
     ./keys.nix
     ./plugins
