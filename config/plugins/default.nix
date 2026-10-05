@@ -95,6 +95,12 @@
       };
     };
 
+    # Transparent background
+    transparent = {
+      enable = true;
+      autoLoad = true;
+    };
+
     web-devicons.enable = true;
 
     # Session management
